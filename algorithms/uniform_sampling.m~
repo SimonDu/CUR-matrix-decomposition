@@ -20,6 +20,7 @@ function out = uniform_sampling(in)
 %  Nystrom extension to A, using l columns. The first row corresponds to 
 %  Nystrom extensions where the rank was not fixed, the second to Nystrom
 %  extensions where the rank was fixed
+%  - sigma_k, the k-th singular value of A
 % 
 %  -timings, a two row matrix of the time it took to run each experiment 
 % (i.e. form C, Winv, Wkinv), including the time to approximate the leverage scores
@@ -30,7 +31,8 @@ function out = uniform_sampling(in)
 
 
 [m,n] = size(in.A);
-[c,r] = in.number_of_c_and_r;
+c = in.number_of_c_and_r(1);
+r = in.number_of_c_and_r(2);
 out.specerr = zeros(2,in.q);
 out.froerr = zeros(2,in.q);
 out.trerr = zeros(2,in.q);
@@ -42,7 +44,6 @@ for iter=1:in.q
         p = randperm(n);
         cidx = p(1:c);
         C = in.A(:,cidx);
-        
         p = randperm(m);
         ridx = p(1:r);
         R = in.A(ridx,:);
@@ -51,13 +52,21 @@ for iter=1:in.q
     [Qc,~] = qr(C,0);
     [Qr,~] = qr(R',0);
     
-    B = Qc'*A*Qr';
-    CUR = Qc*B*Qr;
+    B = Qc'*in.A*Qr;
+    CUR = Qc*B*Qr';
     [Ub,Sb,Vb] = svds(B,in.k);
     Bk = Ub*Sb*Vb';
-    CUR_k = Qc*Bk*Qr;
+    CUR_k = Qc*Bk*Qr';
     
-    out.specerr(:,iter)
+    residual = in.A-CUR;
+    residual_k = in.A - CUR_k);
+    
+    out.specerr(1,iter) = svds(residual)
+    out.specerr(2,iter) = norm(residual_k,2);
+    out.froerr(1,iter) = norm(residual,'fro');
+    out.froerr(2,iter) = norm(residual_k,'fro');
+    
+    out.sigma_k = Sb(end,end);
     %{
     % time the eigenvalue decomposition of W
     tic

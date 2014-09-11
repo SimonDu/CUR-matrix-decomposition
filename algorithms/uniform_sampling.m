@@ -32,7 +32,6 @@ function out = uniform_sampling(in)
 
 [m,n] = size(in.A);
 c = in.number_of_c_and_r(1);
-
 r = in.number_of_c_and_r(2);
 out.specerr = zeros(2,in.q);
 out.froerr = zeros(2,in.q);
@@ -45,48 +44,31 @@ for iter=1:in.q
         p = randperm(n);
         cidx = p(1:c);
         C = in.A(:,cidx);
-        C = full(C);
         p = randperm(m);
         ridx = p(1:r);
         R = in.A(ridx,:);
-        R = full(R);
-    out.timings(:, iter) = toc;
+    out.timings(1, iter) = toc;
     
-    [Qc,~] = qr(C,0);
-    [Qr,~] = qr(R',0);
-    
-    B = Qc'*in.A*Qr;
-    CUR = Qc*B*Qr';
-    [Ub,Sb,Vb] = svds(B,in.k);
-    Bk = Ub*Sb*Vb';
-    CUR_k = Qc*Bk*Qr';
-    
-    out.specerr(1,iter) = norm(in.A-CUR,2);
-    out.specerr(2,iter) = norm(in.A-CUR_k,2);
-    out.froerr(1,iter) = norm(in.A-CUR,'fro');
-    out.froerr(2,iter) = norm(in.A-CUR_k,'fro');
-    
-    out.sigma_k = Sb(end,end);
-    %{
-    % time the eigenvalue decomposition of W
     tic
-        [V,D] = orderedeig(W);
-    decomptime = toc;
+        [Qc,~] = qr(C,0);
+        [Qr,~] = qr(R',0);
+    
+        B = Qc'*in.A*Qr;
+        CUR = Qc*B*Qr';
+        [Ub,Sb,Vb] = svds(B,in.k);
+        Bk = Ub*Sb*Vb';
+        CUR_k = Qc*Bk*Qr';
+    
+        residual = in.A-CUR;
+        residual_k = in.A - CUR_k;
+    
+        out.specerr(1,iter) = svds(residual,1);
+        out.specerr(2,iter) = svds(residual_k,1);
+        out.froerr(1,iter) = norm(residual,'fro');
+        out.froerr(2,iter) = norm(residual_k,'fro');
+        out.sigma_k = Sb(end,end);
+    out.timings(2,iter) = toc;
 
-    
-    % time to form Winv
-    tic
-        Winv = V*pinv(D)*V';
-    out.timings(1, iter) = out.timings(1, iter) + decomptime + toc;
-    
-    % time to form Wkinv
-    tic
-        Wkinv = V(:, 1:in.k)*pinv(D(1:in.k, 1:in.k))*V(:,1:in.k)';
-    out.timings(2, iter) = out.timings(2, iter) + decomptime + toc;
-    
-    [out.specerr(:,iter), out.froerr(:,iter), out.trerr(:,iter)] = ...
-        estnorms(in, C, Winv, Wkinv);
-    %}
 end
 
 end
