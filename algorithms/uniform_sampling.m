@@ -2,12 +2,17 @@ function out = uniform_sampling(in)
 % out = simple_Nystrom(in)
 %
 % in is a structure with (at least) the following fields:
-%  -A, an n-by-n PSD matrix, and
-%  -k, the desired rank of the approximation
-%  -l < n, the number of columns to sample and
-%  -q >= 1 the number of times to repeat the experiment.
+% - A, a matrix
+% - k, the target rank of the approximation
+% - p, the rank of first two partition matrix
+% - number_of_c_and_r, a two row matrix specifying the numbers of column and rows 
+%   samples to use   
+% - q, the number of times to repeat each Nystrom method for each number of
+%  column samples
 %
 % out is a structure with the following fields:
+%  - cidx, index vector of selected columns
+%  - ridx, index vector of selected rows
 %  - specerr, froerr, trerr: each matrices with two rows representing 
 %  the spectral, frobenius, 
 %  and trace norms of the errors in using q realizations of the simple 
@@ -15,6 +20,7 @@ function out = uniform_sampling(in)
 %  Nystrom extension to A, using l columns. The first row corresponds to 
 %  Nystrom extensions where the rank was not fixed, the second to Nystrom
 %  extensions where the rank was fixed
+%  - sigma_k, the k-th singular value of A
 % 
 %  -timings, a two row matrix of the time it took to run each experiment 
 % (i.e. form C, Winv, Wkinv), including the time to approximate the leverage scores
@@ -23,7 +29,11 @@ function out = uniform_sampling(in)
 %out = dummy_extension(in);
 %return
 
-n = size(in.A,1);
+
+[m,n] = size(in.A);
+c = in.number_of_c_and_r(1);
+
+r = in.number_of_c_and_r(2);
 out.specerr = zeros(2,in.q);
 out.froerr = zeros(2,in.q);
 out.trerr = zeros(2,in.q);
@@ -33,16 +43,36 @@ out.timings = zeros(2,in.q);
 for iter=1:in.q
     tic
         p = randperm(n);
-        p = p(1:in.l);
-        C = in.A(:, p);
-
-        W = full(C(p,:));
+        cidx = p(1:c);
+        C = in.A(:,cidx);
+        C = full(C);
+        p = randperm(m);
+        ridx = p(1:r);
+        R = in.A(ridx,:);
+        R = full(R);
     out.timings(:, iter) = toc;
     
+    [Qc,~] = qr(C,0);
+    [Qr,~] = qr(R',0);
+    
+    B = Qc'*in.A*Qr;
+    CUR = Qc*B*Qr';
+    [Ub,Sb,Vb] = svds(B,in.k);
+    Bk = Ub*Sb*Vb';
+    CUR_k = Qc*Bk*Qr';
+    
+    out.specerr(1,iter) = norm(in.A-CUR,2);
+    out.specerr(2,iter) = norm(in.A-CUR_k,2);
+    out.froerr(1,iter) = norm(in.A-CUR,'fro');
+    out.froerr(2,iter) = norm(in.A-CUR_k,'fro');
+    
+    out.sigma_k = Sb(end,end);
+    %{
     % time the eigenvalue decomposition of W
     tic
         [V,D] = orderedeig(W);
     decomptime = toc;
+
     
     % time to form Winv
     tic
@@ -56,6 +86,7 @@ for iter=1:in.q
     
     [out.specerr(:,iter), out.froerr(:,iter), out.trerr(:,iter)] = ...
         estnorms(in, C, Winv, Wkinv);
+    %}
 end
 
 end
