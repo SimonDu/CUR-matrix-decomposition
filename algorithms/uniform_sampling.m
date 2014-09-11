@@ -38,7 +38,6 @@ out.froerr = zeros(2,in.q);
 out.trerr = zeros(2,in.q);
 out.timings = zeros(2,in.q);
 
-
 for iter=1:in.q
     tic
         p = randperm(n);
@@ -66,6 +65,8 @@ for iter=1:in.q
         out.specerr(2,iter) = svds(residual_k,1);
         out.froerr(1,iter) = norm(residual,'fro');
         out.froerr(2,iter) = norm(residual_k,'fro');
+        %out.trerr(1,iter) = trace(sqrt(residual*residual'));
+        %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
         out.sigma_k = Sb(end,end);
     out.timings(2,iter) = toc;
 
