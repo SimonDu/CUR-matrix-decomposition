@@ -1,5 +1,5 @@
 function out = uniform_sampling(in)
-% out = simple_Nystrom(in)
+% out = uniform_sampling(in)
 %
 % in is a structure with (at least) the following fields:
 % - A, a matrix
