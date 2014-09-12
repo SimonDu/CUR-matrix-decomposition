@@ -1,12 +1,12 @@
-function [idx] = CX_SubspaceExpected(A,k,c)
+function [idx] = CX_SubspaceExpected(Va,k,c)
 %subspace sampling CUR
 
-[~,n] = size(A);
+[n,~] = size(Va);
 
 p = zeros(n,1);
 
 %truncated SVD
-[~,~,Va]=svds(A,k);
+
 
 %calculate the stat leverage score
 for j = 1:n
