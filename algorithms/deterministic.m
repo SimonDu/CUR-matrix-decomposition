@@ -41,11 +41,11 @@ out.timings = zeros(2,in.q);
 for iter=1:in.q
     tic
         [~,~,Va]=svds(in.A,in.p);
-        cidx = MSelect(Va(:,1:in.k),in.k,c);
+        cidx = MSelect(Va(:,1:in.p),in.p,c);
         C = in.A(:,cidx);
 
         [~,~,Va]=svds(in.A',in.p);
-        ridx = MSelect(Va(:,1:in.k),in.k,r);
+        ridx = MSelect(Va(:,1:in.p),in.p,r);
         R = in.A(ridx,:);
     out.timings(1, iter) = toc;
     
