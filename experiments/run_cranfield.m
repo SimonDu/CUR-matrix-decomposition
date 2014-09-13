@@ -1,19 +1,20 @@
 load('/Users/simonshaoleidu/Programming/github/CX and CUR matrix decomposition/datasets/cranfield-term-doc.mat');
+A=A_cran;
 in_cell = {};
 out_cell = {};
 k=5;
 number_of_c_and_r = [50,50];
 
 
-[U,S,V] = svds(A_cran,5);
-s=svds(A_cran,5);
+[U,S,V] = svds(A,5);
+s=svds(A,5);
 A_k = U*S*V';
-froerr = norm(A_cran-A_k,'fro');
-specerr = norm(A_cran-A_k);
+froerr = norm(A-A_k,'fro');
+specerr = norm(A-A_k);
 
 
 for i = 5:30
-    in_cell{i}.A = A_cran;
+    in_cell{i}.A = A;
     in_cell{i}.k=k;
     in_cell{i}.p=i;
     in_cell{i}.q=1;
@@ -45,15 +46,15 @@ end
 plot((5:30),fro_k_cell);
 
 hold;
-fro_cell=[];
+spec_cell=[];
 for i=5:30
-    fro_cell(i-4) = out_cell{i}.specerr(1)/specerr;
+    spec_cell(i-4) = out_cell{i}.specerr(1)/specerr;
 end
 plot((5:30),fro_cell);
 
 hold;
-fro_k_cell=[];
+spec_k_cell=[];
 for i=5:30
-    fro_k_cell(i-4) = out_cell{i}.specerr(2)/specerr;
+    spec_k_cell(i-4) = out_cell{i}.specerr(2)/specerr;
 end
 plot((5:30),fro_k_cell);
