@@ -1,0 +1,24 @@
+function distmat = generate_distance_matrix(datapoints )
+% distmat = generate_distance_matrix(datapoints)
+%   
+% The rows of datapoints are the observations x_i
+% Returns distmat so the (ij)th entry is norm(x_i-x_j)^2
+%
+% First whitens data: centers and makes std dev of points 1 
+% before calculations
+
+numpts = size(datapoints,1);
+m = mean(datapoints);
+stdv = std(datapoints);
+stdv(stdv < 10^(-4)) = 1; % avoid division by 0
+pts = (datapoints - repmat(m, numpts, 1))./repmat(stdv, numpts, 1);
+
+distmat = zeros(numpts, numpts);
+parfor row = 1:numpts
+    if mod(row,100)==0
+       fprintf('Generating row %d of %d\n', row, numpts);
+    end
+    displacements = (pts - repmat(pts(row, :),numpts,1))';
+    distmat(row, :) = sum(displacements.^2);
+end
+
