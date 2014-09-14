@@ -9,12 +9,15 @@ function out = data_description(in)
 
 [m,n] = size(in.A);
 [U,S,V] = svds(in.A,max(in.p));
-out.nzp = nnz(in.A)/(m*n);
+disp('svd done');
+out.nonzero_percentage = nnz(in.A)/(m*n);
 
 
 A_k = U(:,1:in.k)*S(1:in.k,1:in.k)*V(:,1:in.k)';
 out.f_norm_ratio_k = norm(in.A-A_k,'fro')/norm(in.A,'fro');
-out.two_norm_ratio_k = norm(in.A-A_k)/norm(full(in.A));
+disp('f_norm done')
+%out.two_norm_ratio_k = norm(in.A-A_k)/norm(full(in.A));
+%disp('two_norm done')
 
 
 out.sigma_p_sigma_k = [];
@@ -36,19 +39,19 @@ for i = 1:length(in.p)
     %calculate the leverage score of Vp
     L = 1:n;
     for j = 1:n
-        L(j) = n/in.p(i)*sum(V(j,1:in.p(i)).^2);
+        L(j) = n/in.p(i)*norm(V(j,1:in.p(i)));
     end
     [sortedValues,~] = sort(L,'descend');
     out.leverage_score_Vp(i) = sortedValues(in.p(i));
     out.coherence_score_Vp(i) = max(L);
-
+    disp('leverage score of Vp done')
     %calculate the leverage score of Up
     L = 1:m;
     for j = 1:m
-        L(j) = m/in.p(i)*sum(U(j,1:in.p(i)).^2);
+        L(j) = m/in.p(i)*norm(U(j,1:in.p(i)));
     end
     [sortedValues,~] = sort(L,'descend');
     out.leverage_score_Up(i) = sortedValues(in.p(i));
     out.coherence_score_Up(i) = max(L);
-
+    disp('leverage score of Up done')
 end
