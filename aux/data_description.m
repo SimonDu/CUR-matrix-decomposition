@@ -9,7 +9,6 @@ function out = data_description(in)
 
 [m,n] = size(in.A);
 [U,S,V] = svds(in.A,max(in.p));
-disp('svd done');
 out.nonzero_percentage = nnz(in.A)/(m*n);
 
 
@@ -41,7 +40,6 @@ for i = 1:length(in.p)
     [sortedValues,~] = sort(L,'descend');
     out.leverage_score_Vp(i) = sortedValues(in.p(i));
     out.coherence_score_Vp(i) = max(L);
-    disp('leverage score of Vp done')
     %calculate the leverage score of Up
     L = 1:m;
     for j = 1:m
@@ -50,5 +48,4 @@ for i = 1:length(in.p)
     [sortedValues,~] = sort(L,'descend');
     out.leverage_score_Up(i) = sortedValues(in.p(i));
     out.coherence_score_Up(i) = max(L);
-    disp('leverage score of Up done')
 end

@@ -46,7 +46,7 @@ start = tic;
     [~,~,Va]=svds(in.A',in.p);
     ridx = MSelect(Va(:,1:in.p),in.p,r);
     R = in.A(ridx,:);
-out.timings(1, iter) = toc(start);
+out.timings(1) = toc(start);
 
 start = tic;
     [Qc,~] = qr(C,0);
@@ -61,14 +61,14 @@ start = tic;
     residual = in.A-CUR;
     residual_k = in.A - CUR_k;
 
-    out.specerr(1,iter) = svds(residual,1);
-    out.specerr(2,iter) = svds(residual_k,1);
-    out.froerr(1,iter) = norm(residual,'fro');
-    out.froerr(2,iter) = norm(residual_k,'fro');
+    out.specerr(1) = svds(residual,1);
+    out.specerr(2) = svds(residual_k,1);
+    out.froerr(1) = norm(residual,'fro');
+    out.froerr(2) = norm(residual_k,'fro');
     %out.trerr(1,iter) = trace(sqrt(residual*residual'));
     %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
     out.sigma_k = Sb(end,end);
-out.timings(2,iter) = toc(start);
+out.timings(2) = toc(start);
 
 
 end

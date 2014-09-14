@@ -21,7 +21,7 @@ in.k = 5;
 in.q = 6;
 
 %deterministic
-%{
+
 deterministic_output = {};
 subspace_output = {};
 for i=1:length(c_and_r)
@@ -47,7 +47,7 @@ for i=1:length(c_and_r)
             subspace_output{i,p-in.k+1}.timings(2));    
     end
 end
-%}
+
 
 %uniform
 uniform_output = {};
