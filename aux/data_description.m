@@ -14,7 +14,7 @@ out.nzp = nnz(in.A)/(m*n);
 
 A_k = U(:,1:in.k)*S(1:in.k,1:in.k)*V(:,1:in.k)';
 out.f_norm_ratio_k = norm(in.A-A_k,'fro')/norm(in.A,'fro');
-out.two_norm_ratio_k = norm(in.A-A_k)/norm(full(in.A));
+%out.two_norm_ratio_k = norm(in.A-A_k)/norm(full(in.A));
 
 
 out.sigma_p_sigma_k = [];

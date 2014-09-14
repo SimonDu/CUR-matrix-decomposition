@@ -39,7 +39,7 @@ out.trerr = zeros(2,in.q);
 out.timings = zeros(2,in.q);
 
 for iter=1:in.q
-    tic
+    start = tic;
         [~,~,Va]=svds(in.A,in.p);
         cidx = MSelect(Va(:,1:in.p),in.p,c);
         C = in.A(:,cidx);
@@ -47,9 +47,9 @@ for iter=1:in.q
         [~,~,Va]=svds(in.A',in.p);
         ridx = MSelect(Va(:,1:in.p),in.p,r);
         R = in.A(ridx,:);
-    out.timings(1, iter) = toc;
+    out.timings(1, iter) = toc(start);
     
-    tic
+    start = tic;
         [Qc,~] = qr(C,0);
         [Qr,~] = qr(R',0);
     
@@ -69,7 +69,7 @@ for iter=1:in.q
         %out.trerr(1,iter) = trace(sqrt(residual*residual'));
         %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
         out.sigma_k = Sb(end,end);
-    out.timings(2,iter) = toc;
+    out.timings(2,iter) = toc(start);
 
 end
 

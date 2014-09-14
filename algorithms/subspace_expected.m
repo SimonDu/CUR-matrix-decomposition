@@ -41,10 +41,10 @@ out.timings = zeros(2,in.q);
 for iter=1:in.q
     tic
         [Ua,~,Va]=svds(in.A,in.k);
-        idx1 = CX_SubspaceExpected(Va, in.k, c);
+        idx1 = CX_SubspaceExpected(Va, in.p, c);
         C = in.A(:,idx1);
         
-        idx2 = CX_SubspaceExpected(Ua, in.k, r);
+        idx2 = CX_SubspaceExpected(Ua, in.p, r);
         R = in.A(idx2,:);
 
     out.timings(1, iter) = toc;
