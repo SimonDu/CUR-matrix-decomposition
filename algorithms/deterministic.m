@@ -33,45 +33,43 @@ function out = deterministic(in)
 [m,n] = size(in.A);
 c = in.number_of_c_and_r(1);
 r = in.number_of_c_and_r(2);
-out.specerr = zeros(2,in.q);
-out.froerr = zeros(2,in.q);
-out.trerr = zeros(2,in.q);
-out.timings = zeros(2,in.q);
+out.specerr = zeros(2,1);
+out.froerr = zeros(2,1);
+out.trerr = zeros(2,1);
+out.timings = zeros(2,1);
 
-for iter=1:in.q
-    start = tic;
-        [~,~,Va]=svds(in.A,in.p);
-        cidx = MSelect(Va(:,1:in.p),in.p,c);
-        C = in.A(:,cidx);
+start = tic;
+    [~,~,Va]=svds(in.A,in.p);
+    cidx = MSelect(Va(:,1:in.p),in.p,c);
+    C = in.A(:,cidx);
 
-        [~,~,Va]=svds(in.A',in.p);
-        ridx = MSelect(Va(:,1:in.p),in.p,r);
-        R = in.A(ridx,:);
-    out.timings(1, iter) = toc(start);
-    
-    start = tic;
-        [Qc,~] = qr(C,0);
-        [Qr,~] = qr(R',0);
-    
-        B = Qc'*in.A*Qr;
-        CUR = Qc*B*Qr';
-        [Ub,Sb,Vb] = svds(B,in.k);
-        Bk = Ub*Sb*Vb';
-        CUR_k = Qc*Bk*Qr';
-    
-        residual = in.A-CUR;
-        residual_k = in.A - CUR_k;
-    
-        out.specerr(1,iter) = svds(residual,1);
-        out.specerr(2,iter) = svds(residual_k,1);
-        out.froerr(1,iter) = norm(residual,'fro');
-        out.froerr(2,iter) = norm(residual_k,'fro');
-        %out.trerr(1,iter) = trace(sqrt(residual*residual'));
-        %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
-        out.sigma_k = Sb(end,end);
-    out.timings(2,iter) = toc(start);
+    [~,~,Va]=svds(in.A',in.p);
+    ridx = MSelect(Va(:,1:in.p),in.p,r);
+    R = in.A(ridx,:);
+out.timings(1, iter) = toc(start);
 
-end
+start = tic;
+    [Qc,~] = qr(C,0);
+    [Qr,~] = qr(R',0);
+
+    B = Qc'*in.A*Qr;
+    CUR = Qc*B*Qr';
+    [Ub,Sb,Vb] = svds(B,in.k);
+    Bk = Ub*Sb*Vb';
+    CUR_k = Qc*Bk*Qr';
+
+    residual = in.A-CUR;
+    residual_k = in.A - CUR_k;
+
+    out.specerr(1,iter) = svds(residual,1);
+    out.specerr(2,iter) = svds(residual_k,1);
+    out.froerr(1,iter) = norm(residual,'fro');
+    out.froerr(2,iter) = norm(residual_k,'fro');
+    %out.trerr(1,iter) = trace(sqrt(residual*residual'));
+    %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
+    out.sigma_k = Sb(end,end);
+out.timings(2,iter) = toc(start);
+
 
 end
 

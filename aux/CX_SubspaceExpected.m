@@ -1,23 +1,23 @@
-function [idx] = CX_SubspaceExpected(Va,k,c)
+function [idx] = CX_SubspaceExpected(Va,p,c)
 %subspace sampling CUR
 
 [n,~] = size(Va);
 
-p = zeros(n,1);
+L = zeros(n,1);
 
 %truncated SVD
 
 
 %calculate the stat leverage score
 for j = 1:n
-    p(j) = 1/k*sum(Va(j,:).^2);
+    L(j) = 1/p*norm(Va(j,:));
 end
 
 
 %choose min of c*p(j) and 1
 prob = zeros(n,1);
 for j = 1:n
-    prob(j) = min(c*p(j),1);
+    prob(j) = min(c*L(j),1);
 end
 
 %sample
