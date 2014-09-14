@@ -1,0 +1,44 @@
+function out = data_description(in)
+% out = data_description(in)
+% 
+%
+% A, a data matrix
+% k, target rank
+% p, oversampling parameter
+%
+
+[m,n] = size(in.A);
+out.nzp = nnz(in.A)/(m*n);
+
+
+
+[U,S,V] = svds(in.A,20);
+
+for i = 1:length(in.p)
+
+    A_k = U(:,1:in.k)*S(1:in.k,1:in.k)*V(:,1:in.k)';
+    out.sigma_p_sigma_k(end) = S(in.p(i),in.p(i))/S(in.k,in.k);
+    
+    out.two_norm_ratio_k = norm(in.A-A_k)/norm(full(in.A));
+    %out.n_norm_ratio_k = sum(svds(in.A-A_k,min(m,n)))/sum(diag(S));
+
+
+    %calculate the leverage score of Vp
+    L = 1:n;
+    for j = 1:n
+        L(j) = n/in.p(i)*sum(V(j,1:in.p(i)).^2);
+    end
+    [sortedValues,~] = sort(L,'descend');
+    out.leverage_score_Vp = sortedValues(in.p(i));
+    out.coherence_score_Vp = max(L);
+
+    %calculate the leverage score of Up
+    L = 1:m;
+    for j = 1:m
+        L(j) = m/in.p(i)*sum(U(j,1:in.p(i)).^2);
+    end
+    [sortedValues,~] = sort(L,'descend');
+    out.leverage_score_Up = sortedValues(in.p(i));
+    out.coherence_score_Up = max(L);
+
+end
