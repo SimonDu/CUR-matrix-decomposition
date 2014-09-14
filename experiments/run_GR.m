@@ -58,3 +58,5 @@ for i=1:length(c_and_r)
         in.number_of_c_and_r(1),uniform_output{i,p-in.k+1}.timings(1),...
         uniform_output{i,p-in.k+1}.timings(2));    
 end
+
+save('./output/GR');
