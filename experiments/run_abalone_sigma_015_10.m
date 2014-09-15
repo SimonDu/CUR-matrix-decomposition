@@ -1,6 +1,13 @@
-%load data
-[~,~,in5.A] = read_snap_data('CA-GrQc.txt');
-[~,~,in10.A] = read_snap_data('CA-GrQc.txt');
+%run abalone sigma = 1
+in.sigma = .15;
+load 'abalone_distance_matrix'; 
+in.A = generate_RBF_kernel(X, in.sigma);
+clear X;
+
+
+
+in5.A = in.A;
+in10.A = in.A;
 
 %data description
 k = 5;
@@ -16,8 +23,8 @@ disp('done description 10');
 
 %set parameters
 c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
-in.A = read_snap_data('CA-GrQc.txt');
-in.k = 5;
+
+in.k = 10;
 in.q = 6;
 
 %deterministic
@@ -59,4 +66,4 @@ for i=1:length(c_and_r)
         uniform_output{i,p-in.k+1}.timings(2));    
 end
 
-save('./output/GR');
+save('./output/abalone_sigma_015_10');

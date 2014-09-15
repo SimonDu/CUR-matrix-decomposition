@@ -1,4 +1,4 @@
-load('/Users/simonshaoleidu/Programming/github/CX and CUR matrix decomposition/datasets/cranfield-term-doc.mat');
+load('../datasets/cranfield-term-doc.mat');
 A=A_cran;
 in_cell = {};
 out_cell = {};
