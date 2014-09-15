@@ -38,9 +38,12 @@ out.froerr = zeros(2,in.q);
 out.trerr = zeros(2,in.q);
 out.timings = zeros(2,in.q);
 
+
 for iter=1:in.q
     tic
-        [Ua,~,Va]=svds(in.A,in.k);
+        if iter == 1
+            [Ua,~,Va]=svds(in.A,in.k);
+        end
         idx1 = CX_SubspaceExpected(Va, in.p, c);
         C = in.A(:,idx1);
         
