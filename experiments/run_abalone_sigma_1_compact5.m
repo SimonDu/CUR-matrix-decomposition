@@ -1,7 +1,8 @@
 % run Abalone
 % Abalone, sigma = 1
 
-in.sigma = 1; % when sigma = .15, k=20 captures < 18% of variance
+cutoffmultiplier = 3;
+in.sigma = 1; 
 in.cutoff = cutoffmultiplier*in.sigma;
 in.d = 8;
 
@@ -30,7 +31,7 @@ c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
 
 in.k = 5;
 in.q = 6;
-
+%{
 %deterministic
 
 deterministic_output = {};
@@ -71,3 +72,4 @@ for i=1:length(c_and_r)
 end
 
 save('./output/abalone_sigma_1_compact5');
+%}

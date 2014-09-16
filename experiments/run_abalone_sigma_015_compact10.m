@@ -1,6 +1,6 @@
 % run Abalone
 % Abalone, sigma = .15
-
+cutoffmultiplier = 3;
 in.sigma = .15; % when sigma = .15, k=20 captures < 18% of variance
 in.cutoff = cutoffmultiplier*in.sigma;
 in.d = 8;

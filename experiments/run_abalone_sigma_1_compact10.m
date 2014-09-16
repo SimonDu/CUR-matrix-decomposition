@@ -1,6 +1,6 @@
 % run Abalone
 % Abalone, sigma = 1
-
+cutoffmultiplier = 3;
 in.sigma = 1;
 in.cutoff = cutoffmultiplier*in.sigma;
 in.d = 8;

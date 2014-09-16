@@ -1,4 +1,5 @@
-%run abalone sigma = 1
+%run abalone sigma = .15
+%{
 in.sigma = .15;
 load 'abalone_distance_matrix'; 
 in.A = generate_RBF_kernel(X, in.sigma);
@@ -25,7 +26,9 @@ disp('done description 10');
 c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
 
 in.k = 5;
-in.q = 6;
+in.q = 1;
+%}
+
 
 %deterministic
 
@@ -41,7 +44,7 @@ for i=1:length(c_and_r)
             deterministic_output{i,p-in.k+1}.timings(2));    
     end
 end
-
+%{
 %subspace
 subspace_output = {};
 for i=1:length(c_and_r)
@@ -67,3 +70,4 @@ for i=1:length(c_and_r)
 end
 
 save('./output/abalone_sigma_015_5');
+%}
