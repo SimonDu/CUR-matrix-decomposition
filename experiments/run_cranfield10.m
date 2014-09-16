@@ -27,19 +27,19 @@ in.q = 6;
 
 %deterministic
 
-deterministic_output = {};
-subspace_output = {};
-for i=1:length(c_and_r)
-    in.number_of_c_and_r = c_and_r(:,i);
-    for p=in.k:in.k+20      
-        in.p = p;
-        deterministic_output{i,p-in.k+1} = deterministic(in);
-        fprintf('done c = %d, p = %d, time CUR = %d, time error = %d\n',...
-            in.number_of_c_and_r(1),p,deterministic_output{i,p-in.k+1}.timings(1),...
-            deterministic_output{i,p-in.k+1}.timings(2));    
-    end
-end
-
+% deterministic_output = {};
+% subspace_output = {};
+% for i=1:length(c_and_r)
+%     in.number_of_c_and_r = c_and_r(:,i);
+%     for p=in.k:in.k+20      
+%         in.p = p;
+%         deterministic_output{i,p-in.k+1} = deterministic(in);
+%         fprintf('done c = %d, p = %d, time CUR = %d, time error = %d\n',...
+%             in.number_of_c_and_r(1),p,deterministic_output{i,p-in.k+1}.timings(1),...
+%             deterministic_output{i,p-in.k+1}.timings(2));    
+%     end
+% end
+% save('./output/cranfield10');
 %subspace
 subspace_output = {};
 for i=1:length(c_and_r)

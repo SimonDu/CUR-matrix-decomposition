@@ -39,6 +39,7 @@ for i=1:length(c_and_r)
             deterministic_output{i,p-in.k+1}.timings(2));    
     end
 end
+save('./output/cranfield5');
 
 %subspace
 subspace_output = {};

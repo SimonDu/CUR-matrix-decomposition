@@ -7,4 +7,5 @@ experiments/09132014.mat
 
 output/GR.mat
 
-output/GR5.mat
+
+*.mat
