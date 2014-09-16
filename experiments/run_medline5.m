@@ -1,6 +1,6 @@
 
 %run medline-term-doc
-%{
+
 load 'medline-term-doc'
 in.A = A_med;
 in5.A = A_med;
@@ -23,7 +23,7 @@ disp('done description 10');
 c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
 
 in.k = 5;
-in.q = 6;
+in.q = 1;
 
 %deterministic
 
@@ -39,7 +39,7 @@ for i=1:length(c_and_r)
             deterministic_output{i,p-in.k+1}.timings(2));    
     end
 end
-%}
+
 
 
 %subspace
@@ -55,17 +55,16 @@ for i=1:length(c_and_r)
     end
 end
 
-%{
+
 %uniform
 uniform_output = {};
 for i=1:length(c_and_r)
     in.number_of_c_and_r = c_and_r(:,i);
-    uniform_output{i,p-in.k+1} = uniform_sampling(in);
+    uniform_output{i,1} = uniform_sampling(in);
     fprintf('done c = %d, time CUR = %d, time error = %d\n',...
-        in.number_of_c_and_r(1),uniform_output{i,p-in.k+1}.timings(1),...
-        uniform_output{i,p-in.k+1}.timings(2));    
+        in.number_of_c_and_r(1),uniform_output{i,1}.timings(1),...
+        uniform_output{i,1}.timings(2));    
 end
-
-save('./output/medline5');
 %}
+%save('./output/medline5');
 
