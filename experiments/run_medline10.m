@@ -22,7 +22,7 @@ disp('done description 10');
 c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
 
 in.k = 10;
-in.q = 6;
+in.q = 1;
 
 %deterministic
 
@@ -39,6 +39,8 @@ for i=1:length(c_and_r)
     end
 end
 
+
+%{
 %subspace
 subspace_output = {};
 for i=1:length(c_and_r)
@@ -64,3 +66,4 @@ for i=1:length(c_and_r)
 end
 
 save('./output/medline10');
+%}
