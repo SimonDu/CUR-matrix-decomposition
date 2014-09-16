@@ -1,3 +1,4 @@
+%set up
 A = in.A;
 [U,S,V] = svds(A);
 target_singular_value = S(5,5);
