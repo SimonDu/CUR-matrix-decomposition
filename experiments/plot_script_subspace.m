@@ -20,7 +20,7 @@ for i=1:length(c)
     xlim([p(1) p(end)]);
 end
 
-figure(7);
+figure(6);
 for i=1:length(c)
     froerrs=[];
     for j=1:length(p)
