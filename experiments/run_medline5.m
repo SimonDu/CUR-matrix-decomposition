@@ -1,5 +1,6 @@
-%run medline-term-doc
 
+%run medline-term-doc
+%{
 load 'medline-term-doc'
 in.A = A_med;
 in5.A = A_med;
@@ -38,6 +39,8 @@ for i=1:length(c_and_r)
             deterministic_output{i,p-in.k+1}.timings(2));    
     end
 end
+%}
+
 
 %subspace
 subspace_output = {};
@@ -52,7 +55,7 @@ for i=1:length(c_and_r)
     end
 end
 
-
+%{
 %uniform
 uniform_output = {};
 for i=1:length(c_and_r)
@@ -64,3 +67,5 @@ for i=1:length(c_and_r)
 end
 
 save('./output/medline5');
+%}
+
