@@ -10,7 +10,7 @@ L = zeros(n,1);
 
 %calculate the stat leverage score
 for j = 1:n
-    L(j) = 1/p*norm(Va(j,:));
+    L(j) = 1/p*norm(Va(j,:))^2;
 end
 
 
@@ -27,9 +27,6 @@ pick = zeros(n,1);
 for j = 1:n
     pick(j) = randsample([0 1],1,true,[1-prob(j) prob(j)]);
     if pick(j) == 1
-        %S(j,t) = 1;
-        %D(t,t)  = 1/min(1,sqrt(c*p(j)));
-        %t = t + 1;
         idx = [idx j];
     end
 end

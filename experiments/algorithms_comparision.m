@@ -40,7 +40,10 @@ subplot(2,3,1);
 hold on;
 plot(c,sigma_k_deterministic,'r');
 plot(c,sigma_k_subspace,'b');
-%plot(c,sigma_k_uniform,'g');
+plot(c,sigma_k_uniform,'g');
+legend('deterministic','subspace','uniform');
+xlabel('number of columns and rows');
+title('ratio of kth singular value of CUR and that of A');
 xlim([c(1) c(end)]);
 
 %plot frobenius norm error for different algorithms
@@ -56,14 +59,17 @@ end
 froerr_subspace = froerr_subspace./fro_A_A_k;
 froerr_uniform=[];
 for j=1:length(c)
-    froerr_uniform = [froerr_uniform,mean(uniform_output{j,end}.froerr(1))];
+    froerr_uniform = [froerr_uniform,mean(uniform_output{j,end}.froerr(1,:))];
 end
 froerr_uniform = froerr_uniform./fro_A_A_k;
 subplot(2,3,2);
 hold on;
 plot(c,froerr_deterministic,'r');
 plot(c,froerr_subspace,'b');
-%plot(c,froerr_uniform,'g');
+plot(c,froerr_uniform,'g');
+legend('deterministic','subspace','uniform');
+xlabel('number of columns and rows');
+title('relative frobenius norm reconstruction error');
 xlim([c(1) c(end)]);
 
 %plot truncated-k frobenius norm error for different algorithms
@@ -79,14 +85,17 @@ end
 froerr_k_subspace = froerr_k_subspace./fro_A_A_k;
 froerr_k_uniform=[];
 for j=1:length(c)
-    froerr_k_uniform = [froerr_k_uniform,mean(uniform_output{j,end}.froerr(2))];
+    froerr_k_uniform = [froerr_k_uniform,mean(uniform_output{j,end}.froerr(2,:))];
 end
 froerr_k_uniform = froerr_k_uniform./fro_A_A_k;
 subplot(2,3,3);
 hold on;
 plot(c,froerr_k_deterministic,'r');
 plot(c,froerr_k_subspace,'b');
-%plot(c,froerr_k_uniform,'g');
+plot(c,froerr_k_uniform,'g');
+legend('deterministic','subspace','uniform');
+xlabel('number of columns and rows');
+title('relative frobenius norm rank-k reconstruction error');
 xlim([c(1) c(end)]);
 
 %plot spectral norm error for different algorithms
@@ -104,12 +113,15 @@ specerr_uniform=[];
 for j=1:length(c)
     specerr_uniform = [specerr_uniform,mean(uniform_output{j,end}.specerr(1,:))];
 end
-specerr_uniform = specerr_uniform./fro_A_A_k;
+specerr_uniform = specerr_uniform./spec_A_A_k;
 subplot(2,3,4);
 hold on;
 plot(c,specerr_deterministic,'r');
 plot(c,specerr_subspace,'b');
-%plot(c,specerr_uniform,'g');
+plot(c,specerr_uniform,'g');
+legend('deterministic','subspace','uniform');
+xlabel('number of columns and rows');
+title('relative spectral norm reconstruction error');
 xlim([c(1) c(end)]);
 
 %plot truncated-k spectral norm error for different algorithms
@@ -132,6 +144,9 @@ subplot(2,3,5);
 hold on;
 plot(c,specerr_k_deterministic,'r');
 plot(c,specerr_k_subspace,'b');
-%plot(c,specerr_k_uniform,'g');
+plot(c,specerr_k_uniform,'g');
+legend('deterministic','subspace','uniform');
+xlabel('number of columns and rows');
+title('relative spectral norm rank-k reconstruction error');
 xlim([c(1) c(end)]);
 
