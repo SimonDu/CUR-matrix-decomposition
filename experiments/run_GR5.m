@@ -18,7 +18,7 @@ disp('done description 10');
 c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
 in.A = read_snap_data('CA-GrQc.txt');
 in.k = 5;
-in.q = 6;
+in.q = 2;
 
 %deterministic
 
