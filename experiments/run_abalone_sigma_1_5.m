@@ -25,7 +25,7 @@ disp('done description 10');
 c_and_r = [50,60,70,80,90,100;50,60,70,80,90,100];
 
 in.k = 5;
-in.q = 6;
+in.q = 2;
 
 %deterministic
 

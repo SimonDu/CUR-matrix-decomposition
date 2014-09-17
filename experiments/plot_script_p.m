@@ -14,6 +14,8 @@ c = (50:10:100);
 
 for i=1:length(c) 
     figure(i);
+    column_num = num2str(c);
+    title(strcat('number of columns: ',column_num));
     %sigma_k_plot
     deterministic_sigma_k=[];
     subspace_sigma_k=[];
