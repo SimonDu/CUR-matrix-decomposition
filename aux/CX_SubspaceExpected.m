@@ -10,7 +10,7 @@ L = zeros(n,1);
 
 %calculate the stat leverage score
 for j = 1:n
-    L(j) = 1/p*norm(Va(j,:));
+    L(j) = 1/p*(norm(Va(j,:)))^2;
 end
 
 

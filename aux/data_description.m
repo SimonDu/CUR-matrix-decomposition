@@ -35,7 +35,7 @@ for i = 1:length(in.p)
     %calculate the leverage score of Vp
     L = 1:n;
     for j = 1:n
-        L(j) = n/in.p(i)*norm(V(j,1:in.p(i)));
+        L(j) = n/in.p(i)*(norm(V(j,1:in.p(i))))^2;
     end
     [sortedValues,~] = sort(L,'descend');
     out.leverage_score_Vp(i) = sortedValues(in.p(i));
@@ -43,7 +43,7 @@ for i = 1:length(in.p)
     %calculate the leverage score of Up
     L = 1:m;
     for j = 1:m
-        L(j) = m/in.p(i)*norm(U(j,1:in.p(i)));
+        L(j) = m/in.p(i)*(norm(U(j,1:in.p(i))))^2;
     end
     [sortedValues,~] = sort(L,'descend');
     out.leverage_score_Up(i) = sortedValues(in.p(i));
