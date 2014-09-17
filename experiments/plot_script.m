@@ -1,10 +1,12 @@
+%set up
+k=10;
 A = in.A;
-[U,S,V] = svds(A);
-target_singular_value = S(5,5);
+[U,S,V] = svds(A,k);
+target_singular_value = S(k,k);
 fro_A_A_k = norm(A-U*S*V','fro');
 spec_A_A_k = svds(A-U*S*V',1);
 %p,c for plot
-p = (5:25);
+p = (k:k+20);
 c = (50:10:100);
 %p for different determinisitc
 
@@ -16,7 +18,7 @@ for i=1:length(c)
     end
     sigma_k = sigma_k./target_singular_value;
     subplot(2,3,i);
-    plot(p,sigma_k);
+    plot(p,sigma_k,'r');
     xlim([p(1) p(end)]);
 end
 
@@ -28,7 +30,7 @@ for i=1:length(c)
     end
     froerrs = froerrs./fro_A_A_k;
     subplot(2,3,i);
-    plot(p,froerrs);
+    plot(p,froerrs,'r');
     xlim([p(1) p(end)]);
 end
 
@@ -40,7 +42,7 @@ for i=1:length(c)
     end
     froerrs_k = froerrs_k./fro_A_A_k;
     subplot(2,3,i);
-    plot(p,froerrs_k);
+    plot(p,froerrs_k,'r');
     xlim([p(1) p(end)]);
 end
 
@@ -52,7 +54,7 @@ for i=1:length(c)
     end
     specerrs = specerrs./spec_A_A_k;
     subplot(2,3,i);
-    plot(p,specerrs);
+    plot(p,specerrs,'r');
     xlim([p(1) p(end)]);
 end
 
@@ -64,7 +66,7 @@ for i=1:length(c)
     end
     specerrs_k = specerrs_k./spec_A_A_k;
     subplot(2,3,i);
-    plot(p,specerrs_k);
+    plot(p,specerrs_k),'r';
     xlim([p(1) p(end)]);
 end
 

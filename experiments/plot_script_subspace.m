@@ -1,11 +1,12 @@
 %set up
+k=10;
 A = in.A;
-[U,S,V] = svds(A);
-target_singular_value = S(5,5);
+[U,S,V] = svds(A,k);
+target_singular_value = S(k,k);
 fro_A_A_k = norm(A-U*S*V','fro');
 spec_A_A_k = svds(A-U*S*V',1);
 %p,c for plot
-p = (5:25);
+p = (k:k+20);
 c = (50:10:100);
 %p for different determinisitc
 
