@@ -1,7 +1,7 @@
 %a script to discover see the effect of choosing different p
 
 %set up
-k=10;
+k=5;
 A = in.A;
 [U,S,V] = svds(A,k);
 target_singular_value = S(k,k);
@@ -24,6 +24,7 @@ for i=1:length(c)
         subspace_sigma_k=[subspace_sigma_k,mean(subspace_output{i,j}.sigma_k)];
     end
     subplot(2,3,1);
+    title('sigma_k');
     hold on;
     plot(p,deterministic_sigma_k./target_singular_value,'r');
     plot(p,subspace_sigma_k./target_singular_value,'b');
@@ -39,6 +40,7 @@ for i=1:length(c)
         subspace_froerr=[subspace_froerr,mean(subspace_output{i,j}.froerr(1,:))];
     end
     subplot(2,3,2);
+    title('froerr');
     hold on;
     plot(p,deterministic_froerr./fro_A_A_k,'r');
     plot(p,subspace_froerr./fro_A_A_k,'b');
@@ -54,6 +56,7 @@ for i=1:length(c)
         subspace_froerr_k=[subspace_froerr_k,mean(subspace_output{i,j}.froerr(2,:))];
     end
     subplot(2,3,3);
+    title('froerr_k');
     hold on;
     plot(p,deterministic_froerr_k./fro_A_A_k,'r');
     plot(p,subspace_froerr_k./fro_A_A_k,'b');
@@ -69,6 +72,7 @@ for i=1:length(c)
         subspace_specerr=[subspace_specerr,mean(subspace_output{i,j}.specerr(1,:))];
     end
     subplot(2,3,4);
+    title('specerr');
     hold on;
     plot(p,deterministic_specerr./spec_A_A_k,'r');
     plot(p,subspace_specerr./spec_A_A_k,'b');
@@ -84,6 +88,7 @@ for i=1:length(c)
         subspace_specerr_k=[subspace_specerr_k,mean(subspace_output{i,j}.specerr(2,:))];
     end
     subplot(2,3,5);
+    title('specerr_k');
     hold on;
     plot(p,deterministic_specerr_k./spec_A_A_k,'r');
     plot(p,subspace_specerr_k./spec_A_A_k,'b');

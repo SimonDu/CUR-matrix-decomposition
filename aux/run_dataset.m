@@ -14,9 +14,10 @@ function savedata = generate_dataset(in)
 %   valid methods
 % - A, a matrix
 % - k, the target rank of the approximation
-% - number_of_c_and_r: a 2d matrix (contains column, row) pairs
-% - q, the number of times to repeat each Nystrom method for each number of
-%  column samples
+% - p, a vector of the oversampling parameter for deterministic and
+% subspace sampling method
+% - number_of_c_and_r: a (column, row) tuple
+% - q, the number of times to repeat each random algorithms
 %
 % Other fields may be required to be present, depending on the Nystrom
 % methods specified. Valid methods (case insensitive):
@@ -49,17 +50,17 @@ savedata.properties = datadescription(in.A);
 % store the outputs for each methods
 
 if wantq('uniform_sampling')
-    fprintf('...simple\n');
+    fprintf('...uniform sampling\n');
     savedata.uniform_sampling_output = uniform_sampling(in);
 end
 
 if wantq('deterministic')
-    fprintf('...simple\n');
+    fprintf('...deterministic algorithm\n');
     savedata.deterministic_output = deterministic(in);
 end
 
 if wantq('subspace_expected')
-    fprintf('...simple\n');
+    fprintf('...subspace sampling\n');
     savedata.subspace_expected_output = subspace_expected(in);
 end
 

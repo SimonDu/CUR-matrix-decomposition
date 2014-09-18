@@ -1,6 +1,6 @@
 %run abalone sigma = 1
 in.sigma = 1;
-load 'abalone_distance_matrix'; 
+X = generate_abalone_dataset(in.sigma); 
 in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
