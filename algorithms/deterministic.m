@@ -1,74 +1,83 @@
 function out = deterministic(in)
-% out = deterministic(in)
 %
 % in is a structure with (at least) the following fields:
 % - A, a matrix
 % - k, the target rank of the approximation
 % - p, the rank of first two partition matrix
-% - number_of_c_and_r, a two row matrix specifying the numbers of column and rows 
-%   samples to use   
+% - c, number of columns to select
+% - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
 %
 % out is a structure with the following fields:
-%  - cidx, index vector of selected columns
-%  - ridx, index vector of selected rows
-%  - specerr, froerr, trerr: each matrices with two rows representing 
-%  the spectral, frobenius, 
-%  and trace norms of the errors in using q realizations of the simple 
-%  column-based (sampled uniformly at random w/o replacement)
-%  Nystrom extension to A, using l columns. The first row corresponds to 
-%  Nystrom extensions where the rank was not fixed, the second to Nystrom
-%  extensions where the rank was fixed
-%  - sigma_k, the k-th singular value of A
-% 
-%  -timings, a two row matrix of the time it took to run each experiment 
-% (i.e. form C, Winv, Wkinv), including the time to approximate the leverage scores
+%  - cidx, c*q matrix represents the column index we choose for each
+%  iteration
+%  - ridx, r*q matrix represents the row index we choose for each
+%  iteration
+%  - sigma_k: 1*q vector represents the kth singular value of
+%  reconstruction matrix for each iteration
+%  - froerr: 1*q vector represents the error in frobenius norm of
+%  reconstruction matrix for each iteration
+%  - froerr_k: 1*q vector represents the error in frobenius norm of
+%  truncated rank-k reconstruction matrix for each iteration
+%  - specerr: 1*q vector represents the error in spectral norm of
+%  reconstruction matrix for each iteration
+%  - specerr_k: 1*q vector represents the error in spectral norm of
+%  truncated rank-k reconstruction matrix for each iteration
+%  - construct_time: 1*q vector represents the time to choose columns and rows
+%  - metric_computing_time: 1*q vector represents the time to compute
+%  different metrics
 
-% % if testing
-%out = dummy_extension(in);
-%return
 
+c = in.c;
+r = in.r;
+p = in.p;
 
-[m,n] = size(in.A);
-c = in.number_of_c_and_r(1);
-r = in.number_of_c_and_r(2);
-out.specerr = zeros(2,1);
-out.froerr = zeros(2,1);
-out.trerr = zeros(2,1);
-out.timings = zeros(2,1);
+out.cidx = zeros(c,in.q);
+out.ridx = zeros(r,in.q);
 
-start = tic;
-    [~,~,Va]=svds(in.A,in.p);
-    cidx = MSelect(Va(:,1:in.p),in.p,c);
-    C = in.A(:,cidx);
+out.sigma_k = zeros(1,in.q);
+out.froerr = zeros(1,in.q);
+out.froerr_k = zeros(1,in.q);
+out.specerr = zeros(1,in.q);
+out.specerr_k = zeros(1,in.q);
 
-    [~,~,Va]=svds(in.A',in.p);
-    ridx = MSelect(Va(:,1:in.p),in.p,r);
-    R = in.A(ridx,:);
-out.timings(1) = toc(start);
+out.construct_time = zeros(1,q);
+out.metric_computing_time = zeros(1,q);
 
-start = tic;
-    [Qc,~] = qr(C,0);
-    [Qr,~] = qr(R',0);
+tic;
+[~,~,Va]=svds(in.A,p);
+out.cidx(:,iter) = MSelect(Va(:,1:p),p,c);
+C = in.A(:,cidx);
 
-    B = Qc'*in.A*Qr;
-    CUR = Qc*B*Qr';
-    [Ub,Sb,Vb] = svds(B,in.k);
-    Bk = Ub*Sb*Vb';
-    CUR_k = Qc*Bk*Qr';
+[~,~,Va]=svds(in.A',p);
+out.ridx(:,iter) = MSelect(Va(:,1:p),p,r);
+R = in.A(ridx,:);
+out.construct_time(1,iter) = toc;
 
-    residual = in.A-CUR;
-    residual_k = in.A - CUR_k;
+tic
+[Qc,~] = qr(C,0);
+[Qr,~] = qr(R',0);
 
-    out.specerr(1) = svds(residual,1);
-    out.specerr(2) = svds(residual_k,1);
-    out.froerr(1) = norm(residual,'fro');
-    out.froerr(2) = norm(residual_k,'fro');
-    %out.trerr(1,iter) = trace(sqrt(residual*residual'));
-    %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
-    out.sigma_k = Sb(end,end);
-out.timings(2) = toc(start);
+B = Qc'*in.A*Qr;
+CUR = Qc*B*Qr';
+[Ub,Sb,Vb] = svds(B,in.k);
+Bk = Ub*Sb*Vb';
+CUR_k = Qc*Bk*Qr';
+
+residual = in.A-CUR;
+residual_k = in.A - CUR_k;
+
+out.sigma_k(1,iter) = Sb(end,end);
+out.froerr(1,iter) = norm(residual,'fro');
+out.froerr_k(1,iter) = norm(residual_k,'fro');
+out.specerr(1,iter) = svds(residual,1);
+out.specerr_k(1,iter) = svds(residual_k,1);
+
+%out.trerr(1,iter) = trace(sqrt(residual*residual'));
+%out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
+
+out.metric_computing_time(1,iter) = toc;
 
 
 end

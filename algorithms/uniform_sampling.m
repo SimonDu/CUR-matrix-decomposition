@@ -1,5 +1,4 @@
 function out = uniform_sampling(in)
-% out = uniform_sampling(in)
 %
 % in is a structure with (at least) the following fields:
 % - A, a matrix
@@ -31,6 +30,8 @@ function out = uniform_sampling(in)
 
 
 [m,n] = size(in.A);
+c = in.c;
+r = in.r;
 
 out.cidx = zeros(c,in.q);
 out.ridx = zeros(r,in.q);
@@ -46,38 +47,38 @@ out.metric_computing_time = zeros(1,q);
 
 for iter=1:in.q
     tic
-        permutation = randperm(n);
-        out.cidx(:,iter) = permutation(1:c);
-        C = in.A(:,cidx);
-        permutation = randperm(m);
-        out.ridx(:,ridx) = permutation(1:r);
-        R = in.A(ridx,:);
+    permutation = randperm(n);
+    out.cidx(:,iter) = permutation(1:c);
+    C = in.A(:,cidx);
+    permutation = randperm(m);
+    out.ridx(:,ridx) = permutation(1:r);
+    R = in.A(ridx,:);
     out.construct_time(1,iter) = toc;
     
     tic
-        [Qc,~] = qr(C,0);
-        [Qr,~] = qr(R',0);
+    [Qc,~] = qr(C,0);
+    [Qr,~] = qr(R',0);
     
-        B = Qc'*in.A*Qr;
-        CUR = Qc*B*Qr';
-        [Ub,Sb,Vb] = svds(B,in.k);
-        Bk = Ub*Sb*Vb';
-        CUR_k = Qc*Bk*Qr';
+    B = Qc'*in.A*Qr;
+    CUR = Qc*B*Qr';
+    [Ub,Sb,Vb] = svds(B,in.k);
+    Bk = Ub*Sb*Vb';
+    CUR_k = Qc*Bk*Qr';
     
-        residual = in.A-CUR;
-        residual_k = in.A - CUR_k;
+    residual = in.A-CUR;
+    residual_k = in.A - CUR_k;
     
-        out.sigma_k(1,iter) = Sb(end,end);
-        out.froerr(1,iter) = norm(residual,'fro');
-        out.froerr_k(1,iter) = norm(residual_k,'fro');
-        out.specerr(1,iter) = svds(residual,1);
-        out.specerr_k(1,iter) = svds(residual_k,1);
-        
-        %out.trerr(1,iter) = trace(sqrt(residual*residual'));
-        %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
-        
+    out.sigma_k(1,iter) = Sb(end,end);
+    out.froerr(1,iter) = norm(residual,'fro');
+    out.froerr_k(1,iter) = norm(residual_k,'fro');
+    out.specerr(1,iter) = svds(residual,1);
+    out.specerr_k(1,iter) = svds(residual_k,1);
+    
+    %out.trerr(1,iter) = trace(sqrt(residual*residual'));
+    %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
+    
     out.metric_computing_time(1,iter) = toc;
-
+    
 end
 
 end
