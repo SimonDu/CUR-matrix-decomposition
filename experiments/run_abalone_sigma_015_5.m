@@ -58,7 +58,6 @@ for i=1:length(c_and_r)
     end
 end
 
-
 % %uniform
 % uniform_output = {};
 % for i=1:length(c_and_r)
