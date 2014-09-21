@@ -44,9 +44,6 @@ function savedata = run_dataset_different_p(in,methods,p_values)
 in.methods = lower(methods);
 wantq = @(methodname) any(strcmp(methodname, methods));
 savedata.in = in;
-% datasetfname = fullfile(in.datasetdir, in.datasetbasename);
-% compute the leverage scores and optimal rank-k approximation errors
-savedata.properties = data_description(in);
 
 % store the outputs for each methods
 if wantq('subspace_expected')
