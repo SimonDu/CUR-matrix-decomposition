@@ -32,28 +32,29 @@ function out = deterministic(in)
 c = in.c;
 r = in.r;
 p = in.p;
+q = 1;
 
-out.cidx = zeros(c,in.q);
-out.ridx = zeros(r,in.q);
+out.cidx = zeros(c,q);
+out.ridx = zeros(r,q);
 
-out.sigma_k = zeros(1,in.q);
-out.froerr = zeros(1,in.q);
-out.froerr_k = zeros(1,in.q);
-out.specerr = zeros(1,in.q);
-out.specerr_k = zeros(1,in.q);
+out.sigma_k = zeros(1,q);
+out.froerr = zeros(1,q);
+out.froerr_k = zeros(1,q);
+out.specerr = zeros(1,q);
+out.specerr_k = zeros(1,q);
 
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
 
 tic;
 [~,~,Va]=svds(in.A,p);
-out.cidx(:,iter) = MSelect(Va(:,1:p),p,c);
-C = in.A(:,cidx);
+out.cidx(:,1) = MSelect(Va(:,1:p),p,c);
+C = in.A(:,out.cidx);
 
 [~,~,Va]=svds(in.A',p);
-out.ridx(:,iter) = MSelect(Va(:,1:p),p,r);
-R = in.A(ridx,:);
-out.construct_time(1,iter) = toc;
+out.ridx(:,1) = MSelect(Va(:,1:p),p,r);
+R = in.A(out.ridx,:);
+out.construct_time(1,1) = toc;
 
 tic
 [Qc,~] = qr(C,0);
@@ -68,16 +69,16 @@ CUR_k = Qc*Bk*Qr';
 residual = in.A-CUR;
 residual_k = in.A - CUR_k;
 
-out.sigma_k(1,iter) = Sb(end,end);
-out.froerr(1,iter) = norm(residual,'fro');
-out.froerr_k(1,iter) = norm(residual_k,'fro');
-out.specerr(1,iter) = svds(residual,1);
-out.specerr_k(1,iter) = svds(residual_k,1);
+out.sigma_k(1,1) = Sb(end,end);
+out.froerr(1,1) = norm(residual,'fro');
+out.froerr_k(1,1) = norm(residual_k,'fro');
+out.specerr(1,1) = svds(residual,1);
+out.specerr_k(1,1) = svds(residual_k,1);
 
 %out.trerr(1,iter) = trace(sqrt(residual*residual'));
 %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
 
-out.metric_computing_time(1,iter) = toc;
+out.metric_computing_time(1,1) = toc;
 
 
 end

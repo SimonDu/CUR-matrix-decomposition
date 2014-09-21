@@ -28,20 +28,19 @@ function out = subspace_expected(in)
 %  - metric_computing_time: 1*q vector represents the time to compute
 %  different metrics
 
-
-[m,n] = size(in.A);
 c = in.c;
 r = in.r;
 p = in.p;
+q = in.q;
 
-out.cidx = zeros(c,in.q);
-out.ridx = zeros(r,in.q);
+out.cidx = {};
+out.ridx = {};
 
-out.sigma_k = zeros(1,in.q);
-out.froerr = zeros(1,in.q);
-out.froerr_k = zeros(1,in.q);
-out.specerr = zeros(1,in.q);
-out.specerr_k = zeros(1,in.q);
+out.sigma_k = zeros(1,q);
+out.froerr = zeros(1,q);
+out.froerr_k = zeros(1,q);
+out.specerr = zeros(1,q);
+out.specerr_k = zeros(1,q);
 
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
@@ -50,13 +49,13 @@ out.metric_computing_time = zeros(1,q);
 for iter=1:in.q
     tic
         if iter == 1
-            [Ua,~,Va]=svds(in.A,in.k);
+            [Ua,~,Va]=svds(in.A,in.p);
         end
-        out.cidx(:,iter) = CX_SubspaceExpected(Va, p, c);
-        C = in.A(:,idx1);
+        out.cidx{iter} = CX_SubspaceExpected(Va, p, c);
+        C = in.A(:,out.cidx{iter});
         
-        out.ridx(:,iter) = CX_SubspaceExpected(Ua, p, r);
-        R = in.A(idx2,:);
+        out.ridx{iter} = CX_SubspaceExpected(Ua, p, r);
+        R = in.A(out.ridx{iter},:);
 
     out.timings(1, iter) = toc;
     
