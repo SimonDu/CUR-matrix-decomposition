@@ -57,7 +57,7 @@ for iter=1:in.q
         out.ridx{iter} = CX_SubspaceExpected(Ua, p, r);
         R = in.A(out.ridx{iter},:);
 
-    out.timings(1, iter) = toc;
+    out.construct_time = toc;
     
     tic
         [Qc,~] = qr(C,0);
@@ -73,13 +73,13 @@ for iter=1:in.q
         residual_k = in.A - CUR_k;
     
         out.specerr(1,iter) = svds(residual,1);
-        out.specerr(2,iter) = svds(residual_k,1);
+        out.specerr_k(1,iter) = svds(residual_k,1);
         out.froerr(1,iter) = norm(residual,'fro');
-        out.froerr(2,iter) = norm(residual_k,'fro');
+        out.froerr_k(1,iter) = norm(residual_k,'fro');
         %out.trerr(1,iter) = trace(sqrt(residual*residual'));
         %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
         out.sigma_k = Sb(end,end);
-    out.timings(2,iter) = toc;
+    out.metric_computing_time = toc;
 
 end
 
