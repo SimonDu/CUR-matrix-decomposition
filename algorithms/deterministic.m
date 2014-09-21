@@ -32,19 +32,9 @@ function out = deterministic(in)
 c = in.c;
 r = in.r;
 p = in.p;
-q = 1;
 
-out.cidx = zeros(c,q);
-out.ridx = zeros(r,q);
-
-out.sigma_k = zeros(1,q);
-out.froerr = zeros(1,q);
-out.froerr_k = zeros(1,q);
-out.specerr = zeros(1,q);
-out.specerr_k = zeros(1,q);
-
-out.construct_time = zeros(1,q);
-out.metric_computing_time = zeros(1,q);
+out.cidx = zeros(c,1);
+out.ridx = zeros(r,1);
 
 tic;
 [~,~,Va]=svds(in.A,p);
@@ -69,11 +59,11 @@ CUR_k = Qc*Bk*Qr';
 residual = in.A-CUR;
 residual_k = in.A - CUR_k;
 
-out.sigma_k(1,1) = Sb(end,end);
-out.froerr(1,1) = norm(residual,'fro');
-out.froerr_k(1,1) = norm(residual_k,'fro');
-out.specerr(1,1) = svds(residual,1);
-out.specerr_k(1,1) = svds(residual_k,1);
+out.sigma_k = Sb(end,end);
+out.froerr = norm(residual,'fro');
+out.froerr_k = norm(residual_k,'fro');
+out.specerr = svds(residual,1);
+out.specerr_k = svds(residual_k,1);
 
 %out.trerr(1,iter) = trace(sqrt(residual*residual'));
 %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
