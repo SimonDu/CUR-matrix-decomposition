@@ -32,9 +32,10 @@ function out = uniform_sampling(in)
 [m,n] = size(in.A);
 c = in.c;
 r = in.r;
+q = in.q;
 
-out.cidx = zeros(c,in.q);
-out.ridx = zeros(r,in.q);
+out.cidx = {};
+out.ridx = {};
 
 out.sigma_k = zeros(1,in.q);
 out.froerr = zeros(1,in.q);
@@ -48,11 +49,11 @@ out.metric_computing_time = zeros(1,q);
 for iter=1:in.q
     tic
     permutation = randperm(n);
-    out.cidx(:,iter) = permutation(1:c);
-    C = in.A(:,cidx);
+    out.cidx{iter} = permutation(1:c);
+    C = in.A(:,out.cidx{iter});
     permutation = randperm(m);
-    out.ridx(:,ridx) = permutation(1:r);
-    R = in.A(ridx,:);
+    out.ridx{iter} = permutation(1:r);
+    R = in.A(out.ridx{iter},:);
     out.construct_time(1,iter) = toc;
     
     tic
