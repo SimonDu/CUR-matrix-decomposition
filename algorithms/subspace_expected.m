@@ -1,42 +1,50 @@
 function out = subspace_expected(in)
-% out = subspace_expected(in)
 %
 % in is a structure with (at least) the following fields:
 % - A, a matrix
 % - k, the target rank of the approximation
 % - p, the rank of first two partition matrix
-% - number_of_c_and_r, a two row matrix specifying the numbers of column and rows 
-%   samples to use   
+% - c, number of columns to select
+% - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
 %
 % out is a structure with the following fields:
-%  - cidx, index vector of selected columns
-%  - ridx, index vector of selected rows
-%  - specerr, froerr, trerr: each matrices with two rows representing 
-%  the spectral, frobenius, 
-%  and trace norms of the errors in using q realizations of the simple 
-%  column-based (sampled uniformly at random w/o replacement)
-%  Nystrom extension to A, using l columns. The first row corresponds to 
-%  Nystrom extensions where the rank was not fixed, the second to Nystrom
-%  extensions where the rank was fixed
-%  - sigma_k, the k-th singular value of A
-% 
-%  -timings, a two row matrix of the time it took to run each experiment 
-% (i.e. form C, Winv, Wkinv), including the time to approximate the leverage scores
-
-% % if testing
-%out = dummy_extension(in);
-%return
+%  - cidx, c*q matrix represents the column index we choose for each
+%  iteration
+%  - ridx, r*q matrix represents the row index we choose for each
+%  iteration
+%  - sigma_k: 1*q vector represents the kth singular value of
+%  reconstruction matrix for each iteration
+%  - froerr: 1*q vector represents the error in frobenius norm of
+%  reconstruction matrix for each iteration
+%  - froerr_k: 1*q vector represents the error in frobenius norm of
+%  truncated rank-k reconstruction matrix for each iteration
+%  - specerr: 1*q vector represents the error in spectral norm of
+%  reconstruction matrix for each iteration
+%  - specerr_k: 1*q vector represents the error in spectral norm of
+%  truncated rank-k reconstruction matrix for each iteration
+%  - construct_time: 1*q vector represents the time to choose columns and rows
+%  - metric_computing_time: 1*q vector represents the time to compute
+%  different metrics
 
 
 [m,n] = size(in.A);
-c = in.number_of_c_and_r(1);
-r = in.number_of_c_and_r(2);
-out.specerr = zeros(2,in.q);
-out.froerr = zeros(2,in.q);
-out.trerr = zeros(2,in.q);
-out.timings = zeros(2,in.q);
+c = in.c;
+r = in.r;
+p = in.p;
+
+out.cidx = zeros(c,in.q);
+out.ridx = zeros(r,in.q);
+
+out.sigma_k = zeros(1,in.q);
+out.froerr = zeros(1,in.q);
+out.froerr_k = zeros(1,in.q);
+out.specerr = zeros(1,in.q);
+out.specerr_k = zeros(1,in.q);
+
+out.construct_time = zeros(1,q);
+out.metric_computing_time = zeros(1,q);
 
 
 for iter=1:in.q
@@ -44,10 +52,10 @@ for iter=1:in.q
         if iter == 1
             [Ua,~,Va]=svds(in.A,in.k);
         end
-        idx1 = CX_SubspaceExpected(Va, in.p, c);
+        out.cidx(:,iter) = CX_SubspaceExpected(Va, p, c);
         C = in.A(:,idx1);
         
-        idx2 = CX_SubspaceExpected(Ua, in.p, r);
+        out.ridx(:,iter) = CX_SubspaceExpected(Ua, p, r);
         R = in.A(idx2,:);
 
     out.timings(1, iter) = toc;
