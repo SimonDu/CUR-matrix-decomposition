@@ -1,4 +1,4 @@
-in.sigma = 1;
+in.sigma = 0.15;
 X = generate_abalone_dataset(in.sigma); 
 in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
@@ -12,11 +12,12 @@ methods = {'subspace_expected','deterministic'};
 p_values = (20:79);
 
 out = run_dataset_different_p(in,methods,p_values);
+save('./output/abalone20_sigma_015');
 
 p_values_plot_deterministic;
-export_fig(gcf,'./plots/p_plots_abalone_sigma_1_5_deterministic.pdf');
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_015_deterministic.pdf');
 close all;
 
 p_values_plot_subspace_expected;
-export_fig(gcf,'./plots/p_plots_abalone_sigma_1_5_subspace_expected.pdf');
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_015_subspace_expected.pdf');
 close all;
