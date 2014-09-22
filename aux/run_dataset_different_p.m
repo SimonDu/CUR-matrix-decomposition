@@ -46,6 +46,26 @@ wantq = @(methodname) any(strcmp(methodname, methods));
 savedata.in = in;
 
 % store the outputs for each methods
+if wantq('deterministic')
+    fprintf('...deterministic\n');
+    savedata.deterministic.froerr = zeros(1,length(p_values));
+    savedata.deterministic.froerr_k = zeros(1,length(p_values));
+    savedata.deterministic.specerr = zeros(1,length(p_values));
+    savedata.deterministic.specerr_k = zeros(1,length(p_values));
+    savedata.deterministic.sigma_k = zeros(1,length(p_values));
+    for i =1:length(p_values)
+        in.p = p_values(i);
+        fprintf('...running p=%d\n',in.p);
+        output = deterministic(in);
+        savedata.deterministic.froerr(i) = mean(output.froerr);
+        savedata.deterministic.froerr_k(i) = mean(output.froerr_k);
+        savedata.deterministic.specerr(i) = mean(output.specerr);
+        savedata.deterministic.specerr_k(i) = mean(output.froerr_k);
+        savedata.deterministic.sigma_k(i) = mean(output.sigma_k);
+    end
+end
+
+
 if wantq('subspace_expected')
     fprintf('...subspace_expected\n');  
     savedata.subspace_expected.froerr = zeros(1,length(p_values));
@@ -65,24 +85,7 @@ if wantq('subspace_expected')
     end
 end
 
-if wantq('deterministic')
-    fprintf('...deterministic\n');
-    savedata.deterministic.froerr = zeros(1,length(p_values));
-    savedata.deterministic.froerr_k = zeros(1,length(p_values));
-    savedata.deterministic.specerr = zeros(1,length(p_values));
-    savedata.deterministic.specerr_k = zeros(1,length(p_values));
-    savedata.deterministic.sigma_k = zeros(1,length(p_values));
-    for i =1:length(p_values)
-        in.p = p_values(i);
-        fprintf('...running p=%d\n',in.p);
-        output = deterministic(in);
-        savedata.deterministic.froerr(i) = mean(output.froerr);
-        savedata.deterministic.froerr_k(i) = mean(output.froerr_k);
-        savedata.deterministic.specerr(i) = mean(output.specerr);
-        savedata.deterministic.specerr_k(i) = mean(output.froerr_k);
-        savedata.deterministic.sigma_k(i) = mean(output.sigma_k);
-    end
-end
+
 
 % save(datasetfname, 'savedata');
 

@@ -18,3 +18,5 @@ output/medline5.mat
 output/medline5.mat
 
 *.fig
+
+datasets/dextertestdata.sparse

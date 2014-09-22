@@ -1,6 +1,6 @@
 load 'snpsdata'
 A = A(1:(end-3), 1:size(A,2)-3); % The last three columns and rows are all 0s
-in.A = normalize_kernel_data(A);
+in.A = normalize_kernel_data(A*A');
 clear A;
 
 in.k = 5;
