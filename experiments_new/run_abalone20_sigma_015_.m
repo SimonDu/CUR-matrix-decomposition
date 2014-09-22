@@ -6,7 +6,7 @@ clear X;
 in.k = 20;
 in.c = 80;
 in.r = 80;
-in.q = 30;
+in.q = 10;
 
 methods = {'subspace_expected','deterministic'};
 p_values = (20:79);
