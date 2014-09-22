@@ -17,3 +17,5 @@ output/GR.mat
 output/medline5.mat
 
 output/medline5.mat
+
+*.fig

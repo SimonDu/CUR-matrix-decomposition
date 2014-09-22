@@ -4,14 +4,19 @@ in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
 in.k = 20;
-in.c = floor(2*in.k*log(in.k));
-in.r = floor(2*in.k*log(in.k));
-in.q = 10;
+in.c = 80;
+in.r = 80;
+in.q = 30;
 
 methods = {'subspace_expected','deterministic'};
-p_values = (20:80);
+p_values = (20:79);
 
 out = run_dataset_different_p(in,methods,p_values);
 
 p_values_plot_deterministic;
+export_fig(gcf,'./plots/p_plots_abalone_sigma_1_5_deterministic.pdf');
+close all;
+
 p_values_plot_subspace_expected;
+export_fig(gcf,'./plots/p_plots_abalone_sigma_1_5_subspace_expected.pdf');
+close all;
