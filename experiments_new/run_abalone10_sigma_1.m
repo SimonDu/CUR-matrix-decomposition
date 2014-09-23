@@ -7,7 +7,7 @@ clear X;
 in.k = 10;
 in.c = 50;
 in.r = 50;
-in.q = 10;
+in.q = 5;
 
 methods = {'subspace_expected','deterministic'};
 p_values = (10:49);
