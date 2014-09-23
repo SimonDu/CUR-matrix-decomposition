@@ -18,7 +18,6 @@ p_values = (20:79);
 s = svds(in.A,p_values(end));
 plot(s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
-xlim([p_values(1),p_values(end)]);
 export_fig('./plots/decay_abaloneCompact20_sigma_1.pdf');
 close all;
 
