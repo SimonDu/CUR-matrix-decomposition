@@ -12,8 +12,16 @@ in.c = 80;
 in.r = 80;
 in.q = 10;
 
+
 methods = {'subspace_expected','deterministic'};
 p_values = (20:79);
+
+s = svds(in.A,p_values(end));
+plot(s(p_values(1):end)./s(p_values(1)));
+title('singular value decay');
+xlim([p_values(1),p_values(end)]);
+export_fig('./plots/decay_abaloneCompact20_sigma_015.pdf');
+close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 

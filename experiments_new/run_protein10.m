@@ -10,6 +10,13 @@ in.q = 10;
 methods = {'subspace_expected','deterministic'};
 p_values = (in.k:in.c-1);
 
+s = svds(in.A,p_values(end));
+plot(s(p_values(1):end)./s(p_values(1)));
+title('singular value decay');
+xlim([p_values(1),p_values(end)]);
+export_fig('./plots/decay_protein10.pdf');
+close all;
+
 out = run_dataset_different_p(in,methods,p_values);
 
 save('./output/protein10')
