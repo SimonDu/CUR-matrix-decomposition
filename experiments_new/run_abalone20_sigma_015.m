@@ -1,5 +1,6 @@
 in.sigma = 0.15;
-X = generate_abalone_dataset(in.sigma); 
+load abalone_dataset;
+X = generate_distance_matrix(abaloneInputs');
 in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 

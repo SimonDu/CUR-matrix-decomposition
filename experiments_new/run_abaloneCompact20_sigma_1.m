@@ -2,8 +2,8 @@ cutoffmultiplier = 3;
 in.sigma = 1; 
 in.cutoff = cutoffmultiplier*in.sigma;
 in.d = 8;
-
-load 'abalone_distance_matrix'; 
+load abalone_dataset;
+X = generate_distance_matrix(abaloneInputs');
 in.A = generate_compact_RBF_kernel(X, in.sigma, in.d, in.cutoff);
 clear X;
 
