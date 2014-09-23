@@ -9,7 +9,7 @@ in.r = floor(6*in.k*log(in.k));
 in.q = 10;
 
 methods = {'subspace_expected','deterministic'};
-p_values = (in.k:in.c-1);
+p_values = (in.k:in.c-2);
 
 s = svds(in.A,p_values(end));
 plot(s(p_values(1):end)./s(p_values(1)));
