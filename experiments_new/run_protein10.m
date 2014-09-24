@@ -8,7 +8,7 @@ in.r = 110;
 in.q = 15;
 
 methods = {'subspace_expected','deterministic'};
-p_values = (10:20);
+p_values = (10:40);
 
 s = svds(in.A,p_values(end));
 plot(p_values,s(p_values(1):end)./s(p_values(1)));
