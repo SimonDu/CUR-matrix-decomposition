@@ -7,15 +7,14 @@ clear X;
 in.k = 20;
 in.c = 150;
 in.r = 150;
-in.q = 5;
+in.q = 15;
 
 methods = {'subspace_expected','deterministic'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
-plot(s(p_values(1):end)./s(p_values(1)));
+plot((p_values(1):p_values(end)),s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
-xlim([p_values(1),p_values(end)]);
 export_fig('./plots/decay_abalone20_sigma_015.pdf');
 close all;
 

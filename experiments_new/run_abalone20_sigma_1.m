@@ -7,9 +7,9 @@ clear X;
 in.k = 20;
 in.c = 150;
 in.r = 150;
-in.q = 5;
+in.q = 15;
 
-methods = {'subspace_expected','deterministic'};
+methods = {'deterministic','subspace_expected'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
