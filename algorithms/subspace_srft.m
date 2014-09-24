@@ -1,9 +1,10 @@
-function out = near_optimal(in)
+function out = subspace_srft(in)
 %
 % in is a structure with (at least) the following fields:
 % - A, a matrix
 % - k, the target rank of the approximation
 % - c, number of columns to select
+% - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
 %
@@ -26,10 +27,10 @@ function out = near_optimal(in)
 %  - metric_computing_time: 1*q vector represents the time to compute
 %  different metrics
 
-
 c = in.c;
+r = in.r;
 q = in.q;
-n = size(in.A,1);
+[m,n] = size(in.A);
 
 out.cidx = {};
 out.ridx = {};
@@ -42,32 +43,12 @@ out.specerr_k = zeros(1,q);
 
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
+
+
 for iter=1:in.q
     tic
-        idx1 = NearOptColSelect(in.A, in.k, c);
-        C = in.A(:,idx1);
-        epsilon = 2*in.k/c;
-        r = c;
-        idx21 = NearOptColSelect(in.A', in.k, r);
-        R1 = in.A(idx21,:);
-        res = (in.A/R1)* R1;
-        r2 = c/epsilon;
-        clear R1;
-        res = in.A - res;
-
-        resNorm = ones(n, 1);
-        for i = 1: n
-            resNorm(i) = norm(res(:, i))^2;
-        end
-        clear res;
-        prob = resNorm / sum(resNorm);
-
-        idx22 = AdaptiveSampling(prob, r2);
-
-        idxtmp = 1: n;
-        idx21 = idxtmp(idx21);
-        idx2 = [idx21, idx22];
-        R = in.A(idx2,:);
+        C = srft(in.A,m,c);
+        R = srft(in.A',n,r)';
     out.construct_time = toc;
     
     tic
@@ -91,7 +72,7 @@ for iter=1:in.q
         %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
         out.sigma_k = Sb(end,end);
     out.metric_computing_time = toc;
-    
+
 end
 
 end
