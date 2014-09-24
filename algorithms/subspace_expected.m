@@ -39,8 +39,8 @@ out.ridx = {};
 out.sigma_k = zeros(1,q);
 out.froerr = zeros(1,q);
 out.froerr_k = zeros(1,q);
-out.specerr = zeros(1,q);
-out.specerr_k = zeros(1,q);
+% out.specerr = zeros(1,q);
+% out.specerr_k = zeros(1,q);
 
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
