@@ -4,17 +4,16 @@ in.A = normalize_kernel_data(A*A');
 clear A;
 
 in.k = 5;
-in.c = floor(6*in.k*log(in.k));
-in.r = floor(6*in.k*log(in.k));
-in.q = 10;
+in.c = 46;
+in.r = 46;
+in.q = 15;
 
 methods = {'subspace_expected','deterministic'};
-p_values = (in.k:in.c-2);
+p_values = (5:20);
 
 s = svds(in.A,p_values(end));
-plot(s(p_values(1):end)./s(p_values(1)));
+plot(p_values,s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
-xlim([p_values(1),p_values(end)]);
 export_fig('./plots/decay_SNPs5.pdf');
 close all;
 

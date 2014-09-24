@@ -3,17 +3,16 @@ in.A = normalize_kernel_data(X);
 clear A;
 
 in.k = 10;
-in.c = 50;
-in.r = 50;
-in.q = 10;
+in.c = 110;
+in.r = 110;
+in.q = 15;
 
 methods = {'subspace_expected','deterministic'};
-p_values = (in.k:in.c-1);
+p_values = (10:20);
 
 s = svds(in.A,p_values(end));
-plot(s(p_values(1):end)./s(p_values(1)));
+plot(p_values,s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
-xlim([p_values(1),p_values(end)]);
 export_fig('./plots/decay_protein10.pdf');
 close all;
 
