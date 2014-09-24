@@ -3,15 +3,14 @@ in.A = read_snap_data('CA-GrQc.txt');
 in.k = 20;
 in.c = 80;
 in.r = 80;
-in.q = 10;
+in.q = 15;
 
 methods = {'subspace_expected','deterministic'};
-p_values = (20:79);
+p_values = (20:40);
 
 s = svds(in.A,p_values(end));
-plot(s(p_values(1):end)./s(p_values(1)));
+plot(p_values,s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
-xlim([p_values(1),p_values(end)]);
 export_fig('./plots/decay_GR20.pdf');
 close all;
 

@@ -13,7 +13,7 @@ methods = {'deterministic','subspace_expected'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
-plot(s(p_values(1):end)./s(p_values(1)));
+plot(p_values,s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
 export_fig('./plots/decay_abalone20_sigma_1.pdf');
 close all;
