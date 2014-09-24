@@ -5,8 +5,8 @@ in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
 in.k = 20;
-in.c = 150;
-in.r = 150;
+in.c = 80;
+in.r = 80;
 in.q = 15;
 
 methods = {'deterministic','subspace_expected'};
