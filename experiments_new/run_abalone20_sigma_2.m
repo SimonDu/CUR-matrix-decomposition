@@ -1,4 +1,4 @@
-in.sigma = 1;
+in.sigma = 2;
 load abalone_dataset;
 X = generate_distance_matrix(abaloneInputs');
 in.A = generate_RBF_kernel(X, in.sigma);
@@ -15,7 +15,7 @@ p_values = (20:40);
 s = svds(in.A,p_values(end));
 plot(p_values,s(p_values(1):end)./s(p_values(1)));
 title('singular value decay');
-export_fig('./plots/decay_abalone20_sigma_1.pdf');
+export_fig('./plots/decay_abalone20_sigma_2.pdf');
 close all;
 
 out = run_dataset_different_p(in,methods,p_values);
@@ -23,9 +23,9 @@ out = run_dataset_different_p(in,methods,p_values);
 save('./output/abalone20_sigma_1')
 
 p_values_plot_deterministic;
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_1_deterministic.pdf');
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_deterministic.pdf');
 close all;
 
 p_values_plot_subspace_expected;
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_1_subspace_expected.pdf');
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_expected.pdf');
 close all;
