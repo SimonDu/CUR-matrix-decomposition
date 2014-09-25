@@ -1,4 +1,4 @@
-function out = subspace_approxlevscore(in)
+function out = subspace_approxlevscore_gaussian(in)
 %
 % in is a structure with (at least) the following fields:
 % - A, a matrix
@@ -50,8 +50,8 @@ for iter=1:in.q
     tic
     
     % compute the approximate leverage scores
-    [out.approxlevscores, out.numiters(iter)] = ...
-        power_method_approx_levscores(in.A,in.k);
+    out.approxlevscores = ...
+        spectral_sketch_levscores(in.A,in.k);
     levscoreprobs = out.approxlevscores/in.k;
     
     % sample according to those leverage scores
@@ -65,8 +65,8 @@ for iter=1:in.q
     C = in.A*S;
     
     
-    [out.approxlevscores, out.numiters(iter)] = ...
-    power_method_approx_levscores(in.A',in.k);
+    out.approxlevscores = ...
+        spectral_sketch_levscores(in.A',in.k);
     levscoreprobs = out.approxlevscores/in.k;
     
     % sample according to those leverage scores

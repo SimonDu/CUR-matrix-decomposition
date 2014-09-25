@@ -9,7 +9,8 @@ in.c = 50;
 in.r = 50;
 in.q = 5;
 
-methods = {'subspace_expected','deterministic'};
+%methods = {'subspace_expected','deterministic'};
+methods = {'subspace_approxlevscore_gaussian'};
 p_values = (10:49);
 
 s = svds(in.A,p_values(end));
@@ -20,12 +21,13 @@ close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/abalone10_sigma_1')
 
-p_values_plot_deterministic;
-export_fig(gcf,'./plots/p_plots_abalone10_sigma_1_deterministic.pdf');
-close all;
-
-p_values_plot_subspace_expected;
-export_fig(gcf,'./plots/p_plots_abalone10_sigma_1_subspace_expected.pdf');
-close all;
+% save('./output/abalone10_sigma_1')
+% 
+% p_values_plot_deterministic;
+% export_fig(gcf,'./plots/p_plots_abalone10_sigma_1_deterministic.pdf');
+% close all;
+% 
+% p_values_plot_subspace_expected;
+% export_fig(gcf,'./plots/p_plots_abalone10_sigma_1_subspace_expected.pdf');
+% close all;

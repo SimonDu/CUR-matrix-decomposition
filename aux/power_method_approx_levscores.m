@@ -7,7 +7,7 @@ function [approxlevscores, iter] = power_method_approx_levscores(A,k)
 % iterations has been reached.
 %
 % in is a structure with (at least) the following fields:
-% - A, an SPSD matrix
+% - A
 %
 % chunk is the number of iterations after which to reorthogonalize and to check
 % the leverage scores for convergence
@@ -20,8 +20,6 @@ function [approxlevscores, iter] = power_method_approx_levscores(A,k)
 %
 % returns the approximate leverage scores and the number of iterations
 % needed
-%
-% Assumes k <= rank(A) and A is SPSD (so A' == A)
 
 %these numbers are modified from gitten's code
 maxiters = 10;
@@ -49,7 +47,7 @@ while iter < maxiters
             return;
         end
     end
-    Y = A*(A*Y); % since A is PSD, Y = A*A^T*Y
+    Y = A*(A'*Y);
 end
 
 if (iter == maxiters)
