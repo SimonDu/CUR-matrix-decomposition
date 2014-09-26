@@ -87,6 +87,26 @@ end
 
 
 
+if wantq('subspace_approxlevscore_gaussian')
+    fprintf('...subspace_approxlevscore_gaussian\n');  
+    savedata.subspace_approxlevscore_gaussian.froerr = zeros(1,length(p_values));
+    savedata.subspace_approxlevscore_gaussian.froerr_k = zeros(1,length(p_values));
+%     savedata.subspace_approxlevscore_gaussian.specerr = zeros(1,length(p_values));
+%     savedata.subspace_approxlevscore_gaussian.specerr_k = zeros(1,length(p_values));
+    savedata.subspace_expected.sigma_k = zeros(1,length(p_values));
+    for i =1:length(p_values)
+        in.p = p_values(i);
+        fprintf('...running p=%d\n',in.p);
+        output = subspace_approxlevscore_gaussian(in);
+        savedata.subspace_approxlevscore_gaussian.froerr(i) = mean(output.froerr);
+        savedata.subspace_approxlevscore_gaussian.froerr_k(i) = mean(output.froerr_k);
+%         savedata.subspace_approxlevscore_gaussian.specerr(i) = mean(output.specerr);
+%         savedata.subspace_approxlevscore_gaussian.specerr_k(i) = mean(output.froerr_k);
+        savedata.subspace_approxlevscore_gaussian.sigma_k(i) = mean(output.sigma_k);
+    end
+end
+
+
 % save(datasetfname, 'savedata');
 
 end

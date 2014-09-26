@@ -9,9 +9,8 @@ in.c = 50;
 in.r = 50;
 in.q = 5;
 
-%methods = {'subspace_expected','deterministic'};
-methods = {'subspace_approxlevscore_gaussian'};
-p_values = (10:49);
+methods = {'subspace_expected','deterministic','subspace_approxlevscore_gaussian'};
+p_values = (10:20);
 
 s = svds(in.A,p_values(end));
 plot(s(p_values(1):end)./s(p_values(1)));
