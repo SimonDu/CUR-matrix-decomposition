@@ -9,7 +9,8 @@ in.c = 50;
 in.r = 50;
 in.q = 5;
 
-methods = {'subspace_expected','deterministic','subspace_approxlevscore_gaussian'};
+methods = {'subspace_expected','deterministic',...
+    'subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod'};
 p_values = (10:20);
 
 s = svds(in.A,p_values(end));
