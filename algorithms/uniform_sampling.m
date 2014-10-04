@@ -43,11 +43,21 @@ q = in.q;
 out.cidx = {};
 out.ridx = {};
 
-out.sigma_k = zeros(1,in.q);
-out.froerr = zeros(1,in.q);
-out.froerr_k = zeros(1,in.q);
-out.specerr = zeros(1,in.q);
-out.specerr_k = zeros(1,in.q);
+if(in.sigma_k)
+    out.sigma_k = zeros(1,q);
+end
+if(in.froerr)
+    out.froerr = zeros(1,q);
+end
+if(in.froerr_k)
+    out.froerr_k = zeros(1,q);
+end
+if(in.specerr)
+    out.specerr = zeros(1,q);
+end
+if(in.specerr_k)
+    out.specerr_k = zeros(1,q);
+end
 
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
@@ -75,11 +85,21 @@ for iter=1:in.q
     residual = in.A-CUR;
     residual_k = in.A - CUR_k;
     
-    out.sigma_k(1,iter) = Sb(end,end);
-    out.froerr(1,iter) = norm(residual,'fro');
-    out.froerr_k(1,iter) = norm(residual_k,'fro');
-    out.specerr(1,iter) = svds(residual,1);
-    out.specerr_k(1,iter) = svds(residual_k,1);    
+    if(in.sigma_k)
+        out.sigma_k(1,iter) = Sb(end,end);
+    end
+    if(in.froerr)
+        out.froerr(1,iter) = norm(residual,'fro');
+    end
+    if(in.froerr_k)
+        out.froerr_k(1,iter) = norm(residual_k,'fro');
+    end
+    if(in.specerr)
+        out.specerr(1,iter) = svds(residual,1);
+    end
+    if(in.specerr_k)
+        out.specerr_k(1,iter) = svds(residual_k,1);
+    end
     out.metric_computing_time(1,iter) = toc;
     
 end
