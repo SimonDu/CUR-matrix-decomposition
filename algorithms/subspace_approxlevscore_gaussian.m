@@ -8,6 +8,11 @@ function out = subspace_approxlevscore_gaussian(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+% - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
+% - froerr, 1 if we want output contain froerr, 0 otherwise
+% - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
+% - specerr, 1 if we want output contain specerr, 0 otherwise
+% - specerr_k, 1 if we want output contain specerr_k, 0 otherwise
 %
 % out is a structure with the following fields:
 %  - cidx, c*q matrix represents the column index we choose for each
