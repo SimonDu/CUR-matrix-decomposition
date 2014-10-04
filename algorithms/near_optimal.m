@@ -87,8 +87,6 @@ for iter=1:in.q
         out.specerr_k(1,iter) = svds(residual_k,1);
         out.froerr(1,iter) = norm(residual,'fro');
         out.froerr_k(1,iter) = norm(residual_k,'fro');
-        %out.trerr(1,iter) = trace(sqrt(residual*residual'));
-        %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
         out.sigma_k = Sb(end,end);
     out.metric_computing_time = toc;
     

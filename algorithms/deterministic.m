@@ -8,7 +8,11 @@ function out = deterministic(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
-%
+% - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
+% - froerr, 1 if we want output contain froerr, 0 otherwise
+% - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
+% - specerr, 1 if we want output contain specerr, 0 otherwise
+% - specerr_k, 1 if we want output contain specerr_k, 0 otherwise
 % out is a structure with the following fields:
 %  - cidx, c*q matrix represents the column index we choose for each
 %  iteration
@@ -59,14 +63,21 @@ CUR_k = Qc*Bk*Qr';
 residual = in.A-CUR;
 residual_k = in.A - CUR_k;
 
-out.sigma_k = Sb(end,end);
-out.froerr = norm(residual,'fro');
-out.froerr_k = norm(residual_k,'fro');
-% out.specerr = svds(residual,1);
-out.specerr_k = svds(residual_k,1);
-
-out.trerr(1,iter) = trace(sqrt(residual*residual'));
-out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
+if(in.sigma_k)
+    out.sigma_k = Sb(end,end);
+end
+if(in.froerr)
+    out.froerr = norm(residual,'fro');
+end
+if(in.froerr_k)
+    out.froerr_k = norm(residual_k,'fro');
+end
+if(in.specerr)
+    out.specerr = svds(residual,1);
+end
+if(in.specerr_k)
+    out.specerr_k = svds(residual_k,1);
+end
 
 out.metric_computing_time(1,1) = toc;
 
