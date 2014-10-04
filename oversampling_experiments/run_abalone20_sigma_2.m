@@ -29,3 +29,11 @@ close all;
 p_values_plot_subspace_expected;
 export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_expected.pdf');
 close all;
+
+p_values_plot_subspace_approxlevscore_gaussian;
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_approxlevscore_gaussian.pdf');
+close all;
+
+p_values_plot_subspace_approxlevscore_power;
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_approxlevscore_power.pdf');
+close all;

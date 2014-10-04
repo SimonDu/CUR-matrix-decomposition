@@ -63,10 +63,10 @@ out.sigma_k = Sb(end,end);
 out.froerr = norm(residual,'fro');
 out.froerr_k = norm(residual_k,'fro');
 % out.specerr = svds(residual,1);
-% out.specerr_k = svds(residual_k,1);
+out.specerr_k = svds(residual_k,1);
 
-%out.trerr(1,iter) = trace(sqrt(residual*residual'));
-%out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
+out.trerr(1,iter) = trace(sqrt(residual*residual'));
+out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
 
 out.metric_computing_time(1,1) = toc;
 

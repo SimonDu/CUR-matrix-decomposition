@@ -8,6 +8,7 @@ function out = uniform_sampling(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+
 %
 % out is a structure with the following fields:
 %  - cidx, c*q matrix represents the column index we choose for each
@@ -73,11 +74,7 @@ for iter=1:in.q
     out.froerr(1,iter) = norm(residual,'fro');
     out.froerr_k(1,iter) = norm(residual_k,'fro');
     out.specerr(1,iter) = svds(residual,1);
-    out.specerr_k(1,iter) = svds(residual_k,1);
-    
-    %out.trerr(1,iter) = trace(sqrt(residual*residual'));
-    %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
-    
+    out.specerr_k(1,iter) = svds(residual_k,1);    
     out.metric_computing_time(1,iter) = toc;
     
 end
