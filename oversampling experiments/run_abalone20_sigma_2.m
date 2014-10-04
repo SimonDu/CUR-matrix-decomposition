@@ -9,7 +9,7 @@ in.c = 150;
 in.r = 150;
 in.q = 15;
 
-methods = {'deterministic','subspace_expected'};
+methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
@@ -20,7 +20,7 @@ close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/abalone20_sigma_1')
+save('./output/abalone20_sigma_2')
 
 p_values_plot_deterministic;
 export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_deterministic.pdf');

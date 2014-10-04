@@ -39,8 +39,8 @@ out.ridx = {};
 out.sigma_k = zeros(1,q);
 out.froerr = zeros(1,q);
 out.froerr_k = zeros(1,q);
-% out.specerr = zeros(1,q);
-% out.specerr_k = zeros(1,q);
+out.specerr = zeros(1,q);
+out.specerr_k = zeros(1,q);
 
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
@@ -51,8 +51,8 @@ for iter=1:in.q
     
     % compute the approximate leverage scores
     [out.approxlevscores, out.numiters(iter)] = ...
-        power_method_approx_levscores(in.A,in.k);
-    levscoreprobs = out.approxlevscores/in.k;
+        power_method_approx_levscores(in.A,p);
+    levscoreprobs = out.approxlevscores/p;
     
     % sample according to those leverage scores
     colindices = ones(1,c);
@@ -66,8 +66,8 @@ for iter=1:in.q
     
     
     [out.approxlevscores, out.numiters(iter)] = ...
-        power_method_approx_levscores(in.A',in.k);
-    levscoreprobs = out.approxlevscores/in.k;
+        power_method_approx_levscores(in.A',p);
+    levscoreprobs = out.approxlevscores/p;
     
     % sample according to those leverage scores
     colindices = ones(1,r);
@@ -94,12 +94,10 @@ for iter=1:in.q
     residual = in.A-CUR;
     residual_k = in.A - CUR_k;
     
-    %out.specerr(1,iter) = svds(residual,1);
-    %out.specerr_k(1,iter) = svds(residual_k,1);
+    out.specerr(1,iter) = svds(residual,1);
+    out.specerr_k(1,iter) = svds(residual_k,1);
     out.froerr(1,iter) = norm(residual,'fro');
     out.froerr_k(1,iter) = norm(residual_k,'fro');
-    %out.trerr(1,iter) = trace(sqrt(residual*residual'));
-    %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
     out.sigma_k = Sb(end,end);
     out.metric_computing_time = toc;
     
