@@ -12,8 +12,11 @@ auxiliary functions for runnning experiments
 ./io
 scripts to read different datasets
 
+./datasets
+different datasets
+
 ./oversampling_experiments
 scripts to test how over sampling will affect deterniminsitc and subspace sampling algorithm
 
-./datasets
-different datasets
+./algorithms_comparision_experiments
+scripts to compare algorithms on different datasets

@@ -55,7 +55,7 @@ if wantq('deterministic')
     savedata.deterministic.sigma_k = zeros(1,length(p_values));
     for i =1:length(p_values)
         in.p = p_values(i);
-        fprintf('...running p=%d\n',in.p);
+        fprintf('...running p=%d using deterministic algorithm\n',in.p);
         output = deterministic(in);
         savedata.deterministic.froerr(i) = mean(output.froerr);
         savedata.deterministic.froerr_k(i) = mean(output.froerr_k);
@@ -75,7 +75,7 @@ if wantq('subspace_expected')
     savedata.subspace_expected.sigma_k = zeros(1,length(p_values));
     for i =1:length(p_values)
         in.p = p_values(i);
-        fprintf('...running p=%d\n',in.p);
+        fprintf('...running p=%d using exact subspace sampling\n',in.p);
         output = subspace_expected(in);
         savedata.subspace_expected.froerr(i) = mean(output.froerr);
         savedata.subspace_expected.froerr_k(i) = mean(output.froerr_k);
@@ -96,7 +96,7 @@ if wantq('subspace_approxlevscore_gaussian')
     savedata.subspace_approxlevscore_gaussian.sigma_k = zeros(1,length(p_values));
     for i =1:length(p_values)
         in.p = p_values(i);
-        fprintf('...running p=%d\n',in.p);
+        fprintf('...running p=%d using approxlevscore_gaussian subspace sampling\n',in.p);
         output = subspace_approxlevscore_gaussian(in);
         savedata.subspace_approxlevscore_gaussian.froerr(i) = mean(output.froerr);
         savedata.subspace_approxlevscore_gaussian.froerr_k(i) = mean(output.froerr_k);
@@ -116,7 +116,7 @@ if wantq('subspace_approxlevscore_powermethod')
     savedata.subspace_approxlevscore_powermethod.sigma_k = zeros(1,length(p_values));
     for i =1:length(p_values)
         in.p = p_values(i);
-        fprintf('...running p=%d\n',in.p);
+        fprintf('...running p=%d using approxlevscore_powermethod\n',in.p);
         output = subspace_approxlevscore_powermethod(in);
         savedata.subspace_approxlevscore_powermethod.froerr(i) = mean(output.froerr);
         savedata.subspace_approxlevscore_powermethod.froerr_k(i) = mean(output.froerr_k);
@@ -126,8 +126,5 @@ if wantq('subspace_approxlevscore_powermethod')
     end
 end
 
-
-
-% save(datasetfname, 'savedata');
 
 end
