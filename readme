@@ -1,1 +1,19 @@
 A matlab library for CX and CUR matrix decomposition
+
+./algorithms
+actual algorithms for CUR matrix decomposition
+
+./algorithm_aux
+auxiliary functions for algorithms
+
+./experiments_aux
+auxiliary functions for runnning experiments
+
+./io
+scripts to read different datasets
+
+./oversampling_experiments
+scripts to test how over sampling will affect deterniminsitc and subspace sampling algorithm
+
+./datasets
+different datasets
