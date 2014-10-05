@@ -96,7 +96,7 @@ for iter=1:in.q
     out.ridx = colindices;
     R = S'*in.A;
     
-    out.construct_time = toc;
+    out.construct_time(1,iter) = toc;
     
     tic
     [Qc,~] = qr(C,0);
@@ -126,7 +126,7 @@ for iter=1:in.q
     if(in.specerr_k)
         out.specerr_k(1,iter) = svds(residual_k,1);
     end
-    out.metric_computing_time = toc;
+    out.metric_computing_time(1,iter) = toc;
     
 end
 

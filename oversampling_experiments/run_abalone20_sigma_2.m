@@ -15,7 +15,7 @@ in.froerr_k = 1;
 in.specerr = 0;
 in.specerr_k = 0;
 
-methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod'};
+methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));

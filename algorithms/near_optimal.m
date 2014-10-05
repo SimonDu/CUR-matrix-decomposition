@@ -77,46 +77,46 @@ for iter=1:in.q
             resNorm(i) = norm(res(:, i))^2;
         end
         clear res;
-        prob = resNorm / sum(resNorm); 
-        idx22 = AdaptiveSampling(prob, r2);        
+        prob = resNorm / sum(resNorm);
+        idx22 = AdaptiveSampling(prob, r2);
         idxtmp = 1: n;
         idx21 = idxtmp(idx21);
         out.ridx{iter} = [idx21, idx22];
     else
-        out.ridx{iter} = idx21;       
+        out.ridx{iter} = idx21;
     end
     R = in.A(out.ridx{iter},:);
-    out.construct_time = toc;
+    out.construct_time(1,iter) = toc;
     
     tic
-        [Qc,~] = qr(C,0);
-        [Qr,~] = qr(R',0);
+    [Qc,~] = qr(C,0);
+    [Qr,~] = qr(R',0);
     
-        B = Qc'*in.A*Qr;
-        CUR = Qc*B*Qr';
-        [Ub,Sb,Vb] = svds(B,in.k);
-        Bk = Ub*Sb*Vb';
-        CUR_k = Qc*Bk*Qr';
+    B = Qc'*in.A*Qr;
+    CUR = Qc*B*Qr';
+    [Ub,Sb,Vb] = svds(B,in.k);
+    Bk = Ub*Sb*Vb';
+    CUR_k = Qc*Bk*Qr';
     
-        residual = in.A-CUR;
-        residual_k = in.A - CUR_k;
-        if(in.sigma_k)
-            out.sigma_k(1,iter) = Sb(end,end);
-        end
-        if(in.froerr)
-            out.froerr(1,iter) = norm(residual,'fro');
-        end
-        if(in.froerr_k)
-            out.froerr_k(1,iter) = norm(residual_k,'fro');
-        end
-        if(in.specerr)
-            out.specerr(1,iter) = svds(residual,1);
-        end
-        if(in.specerr_k)
-            out.specerr_k(1,iter) = svds(residual_k,1);
-        end
-                
-    out.metric_computing_time = toc;
+    residual = in.A-CUR;
+    residual_k = in.A - CUR_k;
+    if(in.sigma_k)
+        out.sigma_k(1,iter) = Sb(end,end);
+    end
+    if(in.froerr)
+        out.froerr(1,iter) = norm(residual,'fro');
+    end
+    if(in.froerr_k)
+        out.froerr_k(1,iter) = norm(residual_k,'fro');
+    end
+    if(in.specerr)
+        out.specerr(1,iter) = svds(residual,1);
+    end
+    if(in.specerr_k)
+        out.specerr_k(1,iter) = svds(residual_k,1);
+    end
+    
+    out.metric_computing_time(1,iter) = toc;
     
 end
 
