@@ -71,7 +71,7 @@ if wantq('subspace_approxlevscore_gaussian')
     for i =1:length(c_values)
         in.c = c_values(i);
         in.r = r_values(i);
-        fprintf('...running c=%d, r=%d using approxlevscore_gaussian subspace sampling\n',in.c,in,r);
+        fprintf('...running c=%d, r=%d using approxlevscore_gaussian subspace sampling\n',in.c,in.r);
         output = subspace_approxlevscore_gaussian(in);
         if(in.froerr)
             savedata.subspace_approxlevscore_gaussian.froerr(i) = mean(output.froerr);
