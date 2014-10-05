@@ -13,7 +13,7 @@ if(in.sigma_k)
     hold on;
     plot(p_values,out.subspace_expected.sigma_k./S(k,k),'b');
     legend('subspace-expected');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -24,7 +24,7 @@ if(in.froerr)
     hold on;
     plot(p_values,out.subspace_expected.froerr./fro_A_A_k,'b');
     legend('subspace_expected');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -35,7 +35,7 @@ if(in.froerr_k)
     hold on;
     plot(p_values,out.subspace_expected.froerr_k./fro_A_A_k,'b');
     legend('subspace-expected');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -46,7 +46,7 @@ if(in.specerr)
     hold on;
     plot(p_values,out.subspace_expected.specerr./spec_A_A_k,'b');
     legend('subspace-expected');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -57,6 +57,6 @@ if(in.specerr_k)
     hold on;
     plot(p_values,out.subspace_expected.specerr_k./spec_A_A_k,'b');
     legend('subspace-expected');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end

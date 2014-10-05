@@ -13,7 +13,7 @@ if(in.sigma_k)
     hold on;
     plot(p_values,out.deterministic.sigma_k./S(k,k),'r');
     legend('deterministic');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -24,7 +24,7 @@ if(in.froerr)
     hold on;
     plot(p_values,out.deterministic.froerr./fro_A_A_k,'r');
     legend('deterministic');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -35,7 +35,7 @@ if(in.froerr_k)
     hold on;
     plot(p_values,out.deterministic.froerr_k./fro_A_A_k,'r');
     legend('deterministic');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -46,7 +46,7 @@ if(in.specerr)
     hold on;
     plot(p_values,out.deterministic.specerr./spec_A_A_k,'r');
     legend('deterministic');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
 
@@ -57,6 +57,6 @@ if(in.specerr_k)
     hold on;
     plot(p_values,out.deterministic.specerr_k./spec_A_A_k,'r');
     legend('deterministic');
-    xlabel('number of p');
+    xlabel('value of p');
     xlim([p_values(1),p_values(end)]);
 end
