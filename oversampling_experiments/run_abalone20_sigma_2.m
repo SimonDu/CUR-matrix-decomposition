@@ -9,8 +9,14 @@ in.c = 150;
 in.r = 150;
 in.q = 15;
 
+in.sigma_k = 1;
+in.froerr = 1;
+in.froerr_k = 1;
+in.specerr = 0;
+in.specerr_k = 0;
+
 methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod'};
-p_values = (20:40);
+p_values = (20:21);
 
 s = svds(in.A,p_values(end));
 plot(p_values,s(p_values(1):end)./s(p_values(1)));

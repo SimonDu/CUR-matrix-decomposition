@@ -183,7 +183,7 @@ if wantq('subspace_expected')
     end
     for i =1:length(p_values)
         in.p = p_values(i);
-        fprintf('...running p=%d using approxlevscore_gaussian subspace sampling\n',in.p);
+        fprintf('...running p=%d using subspace subspace_expected\n',in.p);
         output = subspace_expected(in);
         if(in.froerr)
             savedata.subspace_expected.froerr(i) = mean(output.froerr);
