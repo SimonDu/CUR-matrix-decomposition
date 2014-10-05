@@ -62,7 +62,7 @@ out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
 [m,n] = size(in.A);
 
-for iter = 1:q
+for iter = 1:1
     tic;
     Omega = randn(n,2*p);
     Y = in.A*Omega;
