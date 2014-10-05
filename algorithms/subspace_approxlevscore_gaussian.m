@@ -77,6 +77,7 @@ for iter=1:in.q
     scalingfactors = levscoreprobs(colindices).^(1/2);
     Id = speye(m);
     S = Id(:,colindices)*diag(1./scalingfactors);
+    out.cidx = colindices;
     C = in.A*S;
     
     
@@ -92,6 +93,7 @@ for iter=1:in.q
     scalingfactors = levscoreprobs(colindices).^(1/2);
     Id = speye(n);
     S = Id(:,colindices)*diag(1./scalingfactors);
+    out.ridx = colindices;
     R = S'*in.A;
     
     out.construct_time = toc;

@@ -54,7 +54,7 @@ for iter=1:in.q
     tic
         C = srft(in.A,m,c);
         R = srft(in.A',n,r)';
-    out.construct_time = toc;
+    out.construct_time(iter) = toc;
     
     tic
         [Qc,~] = qr(C,0);
@@ -76,7 +76,7 @@ for iter=1:in.q
         %out.trerr(1,iter) = trace(sqrt(residual*residual'));
         %out.trerr(2,iter) = trace(sqrt(residual_k*residual_k'));
         out.sigma_k = Sb(end,end);
-    out.metric_computing_time = toc;
+    out.metric_computing_time(iter) = toc;
 
 end
 

@@ -94,7 +94,7 @@ for iter=1:in.q
     S = Id(:,colindices)*diag(1./scalingfactors);
     R = S'*in.A;
     
-    out.construct_time = toc;
+    out.construct_time(iter) = toc;
     
     tic
     [Qc,~] = qr(C,0);
@@ -108,6 +108,7 @@ for iter=1:in.q
     
     residual = in.A-CUR;
     residual_k = in.A - CUR_k;
+    out.metric_computing_time(iter) = toc;
     
     if(in.sigma_k)
         out.sigma_k(1,iter) = Sb(end,end);
