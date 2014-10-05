@@ -20,7 +20,7 @@ else
     [VA] = GaussProjSVDRight(A, k, l-k);
 end
 
-Ares = A * (VA * VA');
+Ares = A * VA * VA';
 Ares = A - Ares;
 
 
@@ -51,11 +51,7 @@ idx11 = (s' > 0);
 
 %% Adaptive Sampling
 C1 = A(:, idx11);
-
-[U,S,V]=svd(full(C1));
-pC1=V*pinv(S)*U';
-clear U S V;
-res = C1 * (pC1 * A);
+res = C1 * (C1 \ A);
 
 clear C1;
 res = A - res;
