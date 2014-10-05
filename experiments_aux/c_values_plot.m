@@ -44,7 +44,7 @@ if(in.froerr_k)
     plot(c_values,out.subspace_expected.froerr_k./fro_A_A_k,'b');
     plot(c_values,out.subspace_approxlevscore_gaussian.froerr_k./fro_A_A_k,'g');
     plot(c_values,out.subspace_approxlevscore_powermethod.froerr_k./fro_A_A_k,'y');
-    plot(c_values,out.uniform_sampling.froerr_k./fro_A_A_k,'r');
+    plot(c_values,out.uniform_sampling.froerr_k./fro_A_A_k,'--');
     legend('deterministic','exact subspace','gaussian subspace','power subspace','uniform_sampling');
     xlabel('value of c');
     xlim([c_values(1),c_values(end)]);
