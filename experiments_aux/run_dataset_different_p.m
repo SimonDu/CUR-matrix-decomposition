@@ -209,4 +209,43 @@ if wantq('subspace_expected')
     end
 end
 
+if wantq('randomized_unweighted')
+    fprintf('...randomized_unweighted\n');
+    if(in.froerr)
+        savedata.randomized_unweighted.froerr = zeros(1,length(p_values));
+    end
+    if(in.froerr_k)
+        savedata.randomized_unweighted.froerr_k = zeros(1,length(p_values));
+    end
+    if(in.specerr)
+        savedata.randomized_unweighted.specerr = zeros(1,length(p_values));
+    end
+    if(in.specerr_k)
+        savedata.randomized_unweighted.specerr_k = zeros(1,length(p_values));
+    end
+    if(in.sigma_k)
+        savedata.randomized_unweighted.sigma_k = zeros(1,length(p_values));
+    end
+    for i =1:length(p_values)
+        in.p = p_values(i);
+        fprintf('...running p=%d using subspace randomized_unweighted\n',in.p);
+        output = randomized_unweighted(in);
+        if(in.froerr)
+            savedata.randomized_unweighted.froerr(i) = mean(output.froerr);
+        end
+        if(in.froerr_k)
+            savedata.randomized_unweighted.froerr_k(i) = mean(output.froerr_k);
+        end
+        if(in.specerr)
+            savedata.randomized_unweighted.specerr(i) = mean(output.specerr);
+        end
+        if(in.specerr_k)
+            savedata.randomized_unweighted.specerr_k(i) = mean(output.specerr_k);
+        end
+        if(in.sigma_k)
+            savedata.randomized_unweighted.sigma_k(i) = mean(output.sigma_k);
+        end
+    end
+end
+
 end

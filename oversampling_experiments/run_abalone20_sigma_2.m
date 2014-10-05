@@ -15,7 +15,7 @@ in.froerr_k = 1;
 in.specerr = 0;
 in.specerr_k = 0;
 
-methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian'};
+methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','randomized_unweighted'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
@@ -40,6 +40,6 @@ p_values_plot_subspace_approxlevscore_gaussian;
 export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_approxlevscore_gaussian.pdf');
 close all;
 
-p_values_plot_subspace_approxlevscore_power;
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_approxlevscore_power.pdf');
+p_values_plot_randomized_unweighted;
+export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_randomized_unweighted.pdf');
 close all;
