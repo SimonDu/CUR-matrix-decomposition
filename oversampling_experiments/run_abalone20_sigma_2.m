@@ -7,7 +7,7 @@ clear X;
 in.k = 20;
 in.c = 150;
 in.r = 150;
-in.q = 15;
+in.q = 10;
 
 in.sigma_k = 1;
 in.froerr = 1;

@@ -64,7 +64,6 @@ out.metric_computing_time = zeros(1,q);
 
 for iter = 1:q
     tic;
-    Omega = randn(n,4*p);
     Y = in.A*Omega;
     for i = 1:1
         Y = in.A*(in.A'*Y);
