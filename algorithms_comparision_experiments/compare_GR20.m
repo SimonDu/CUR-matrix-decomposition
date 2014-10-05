@@ -14,7 +14,7 @@ c_values = (40:10:150);
 r_values = (40:10:150);
 
 
-methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod','uniform'};
+methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod','uniform_sampling'};
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 
 
