@@ -211,4 +211,45 @@ if wantq('subspace_expected')
     end
 end
 
+
+if wantq('uniform_sampling')
+    fprintf('...uniform_sampling\n');
+    if(in.froerr)
+        savedata.uniform_sampling.froerr = zeros(1,length(c_values));
+    end
+    if(in.froerr_k)
+        savedata.uniform_sampling.froerr_k = zeros(1,length(c_values));
+    end
+    if(in.specerr)
+        savedata.uniform_sampling.specerr = zeros(1,length(c_values));
+    end
+    if(in.specerr_k)
+        savedata.uniform_sampling.specerr_k = zeros(1,length(c_values));
+    end
+    if(in.sigma_k)
+        savedata.uniform_sampling.sigma_k = zeros(1,length(c_values));
+    end
+    for i =1:length(c_values)
+        in.c = c_values(i);
+        in.r = r_values(i);
+        fprintf('...running c=%d, r = %d using uniform_sampling\n',in.c, in.r);
+        output = uniform_sampling(in);
+        if(in.froerr)
+            savedata.uniform_sampling.froerr(i) = mean(output.froerr);
+        end
+        if(in.froerr_k)
+            savedata.uniform_sampling.froerr_k(i) = mean(output.froerr_k);
+        end
+        if(in.specerr)
+            savedata.uniform_sampling.specerr(i) = mean(output.specerr);
+        end
+        if(in.specerr_k)
+            savedata.uniform_sampling.specerr_k(i) = mean(output.specerr_k);
+        end
+        if(in.sigma_k)
+            savedata.uniform_sampling.sigma_k(i) = mean(output.sigma_k);
+        end
+    end
+end
+
 end
