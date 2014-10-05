@@ -16,7 +16,7 @@ in.specerr = 0;
 in.specerr_k = 0;
 
 methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','subspace_approxlevscore_powermethod'};
-p_values = (20:21);
+p_values = (20:40);
 
 s = svds(in.A,p_values(end));
 plot(p_values,s(p_values(1):end)./s(p_values(1)));

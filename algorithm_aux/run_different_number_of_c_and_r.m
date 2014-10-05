@@ -1,4 +1,4 @@
-function savedata = run_dataset_different_p(in,methods,p_values)
+function savedata = run_different_number_of_c_and_r(in,methods,c_values,r_values)
 %
 % savedata = generate_dataset(in)
 %
@@ -16,8 +16,6 @@ function savedata = run_dataset_different_p(in,methods,p_values)
 % - k, the target rank of the approximation
 % - p, a vector of the oversampling parameter for deterministic and
 % subspace sampling method
-% - c : number of columns
-% - r : number of rows
 % - q, the number of times to repeat each random algorithms
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
@@ -56,23 +54,24 @@ savedata.in = in;
 if wantq('subspace_approxlevscore_gaussian')
     fprintf('...subspace_approxlevscore_gaussian\n');
     if(in.froerr)
-        savedata.subspace_approxlevscore_gaussian.froerr = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_gaussian.froerr = zeros(1,length(c_values));
     end
     if(in.froerr_k)
-        savedata.subspace_approxlevscore_gaussian.froerr_k = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_gaussian.froerr_k = zeros(1,length(c_values));
     end
     if(in.specerr)
-        savedata.subspace_approxlevscore_gaussian.specerr = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_gaussian.specerr = zeros(1,length(c_values));
     end
     if(in.specerr_k)
-        savedata.subspace_approxlevscore_gaussian.specerr_k = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_gaussian.specerr_k = zeros(1,length(c_values));
     end
     if(in.sigma_k)
-        savedata.subspace_approxlevscore_gaussian.sigma_k = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_gaussian.sigma_k = zeros(1,length(c_values));
     end
-    for i =1:length(p_values)
-        in.p = p_values(i);
-        fprintf('...running p=%d using approxlevscore_gaussian subspace sampling\n',in.p);
+    for i =1:length(c_values)
+        in.c = c_values(i);
+        in.r = r_values(i);
+        fprintf('...running c=%d, r=%d using approxlevscore_gaussian subspace sampling\n',in.c,in,r);
         output = subspace_approxlevscore_gaussian(in);
         if(in.froerr)
             savedata.subspace_approxlevscore_gaussian.froerr(i) = mean(output.froerr);
@@ -95,23 +94,24 @@ end
 if wantq('subspace_approxlevscore_powermethod')
     fprintf('...subspace_approxlevscore_powermethod\n');
     if(in.froerr)
-        savedata.subspace_approxlevscore_powermethod.froerr = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_powermethod.froerr = zeros(1,length(c_values));
     end
     if(in.froerr_k)
-        savedata.subspace_approxlevscore_powermethod.froerr_k = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_powermethod.froerr_k = zeros(1,length(c_values));
     end
     if(in.specerr)
-        savedata.subspace_approxlevscore_powermethod.specerr = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_powermethod.specerr = zeros(1,length(c_values));
     end
     if(in.specerr_k)
-        savedata.subspace_approxlevscore_powermethod.specerr_k = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_powermethod.specerr_k = zeros(1,length(c_values));
     end
     if(in.sigma_k)
-        savedata.subspace_approxlevscore_powermethod.sigma_k = zeros(1,length(p_values));
+        savedata.subspace_approxlevscore_powermethod.sigma_k = zeros(1,length(c_values));
     end
-    for i =1:length(p_values)
-        in.p = p_values(i);
-        fprintf('...running p=%d using approxlevscore_powermethod subspace sampling\n',in.p);
+    for i =1:length(c_values)
+        in.c = c_values(i);
+        in.r = r_values(i);
+        fprintf('...running c=%d. r=%d using approxlevscore_powermethod subspace sampling\n',in.c,in.r);
         output = subspace_approxlevscore_powermethod(in);
         if(in.froerr)
             savedata.subspace_approxlevscore_powermethod.froerr(i) = mean(output.froerr);
@@ -134,23 +134,24 @@ end
 if wantq('deterministic')
     fprintf('...deterministic\n');
     if(in.froerr)
-        savedata.deterministic.froerr = zeros(1,length(p_values));
+        savedata.deterministic.froerr = zeros(1,length(c_values));
     end
     if(in.froerr_k)
-        savedata.deterministic.froerr_k = zeros(1,length(p_values));
+        savedata.deterministic.froerr_k = zeros(1,length(c_values));
     end
     if(in.specerr)
-        savedata.deterministic.specerr = zeros(1,length(p_values));
+        savedata.deterministic.specerr = zeros(1,length(c_values));
     end
     if(in.specerr_k)
-        savedata.deterministic.specerr_k = zeros(1,length(p_values));
+        savedata.deterministic.specerr_k = zeros(1,length(c_values));
     end
     if(in.sigma_k)
-        savedata.deterministic.sigma_k = zeros(1,length(p_values));
+        savedata.deterministic.sigma_k = zeros(1,length(c_values));
     end
-    for i =1:length(p_values)
-        in.p = p_values(i);
-        fprintf('...running p=%d using deterministic\n',in.p);
+    for i =1:length(c_values)
+        in.c = c_values(i);
+        in.r = r_values(i);
+        fprintf('...running c=%d,r=%d using deterministic\n',in.c,in.r);
         output = deterministic(in);
         if(in.froerr)
             savedata.deterministic.froerr(i) = mean(output.froerr);
@@ -173,23 +174,24 @@ end
 if wantq('subspace_expected')
     fprintf('...subspace_expected\n');
     if(in.froerr)
-        savedata.subspace_expected.froerr = zeros(1,length(p_values));
+        savedata.subspace_expected.froerr = zeros(1,length(c_values));
     end
     if(in.froerr_k)
-        savedata.subspace_expected.froerr_k = zeros(1,length(p_values));
+        savedata.subspace_expected.froerr_k = zeros(1,length(c_values));
     end
     if(in.specerr)
-        savedata.subspace_expected.specerr = zeros(1,length(p_values));
+        savedata.subspace_expected.specerr = zeros(1,length(c_values));
     end
     if(in.specerr_k)
-        savedata.subspace_expected.specerr_k = zeros(1,length(p_values));
+        savedata.subspace_expected.specerr_k = zeros(1,length(c_values));
     end
     if(in.sigma_k)
-        savedata.subspace_expected.sigma_k = zeros(1,length(p_values));
+        savedata.subspace_expected.sigma_k = zeros(1,length(c_values));
     end
-    for i =1:length(p_values)
-        in.p = p_values(i);
-        fprintf('...running p=%d using subspace subspace_expected\n',in.p);
+    for i =1:length(c_values)
+        in.c = c_values(i);
+        in.r = r_values(i);
+        fprintf('...running c=%d, r = %d using subspace subspace_expected\n',in.c, in.r);
         output = subspace_expected(in);
         if(in.froerr)
             savedata.subspace_expected.froerr(i) = mean(output.froerr);
