@@ -64,21 +64,26 @@ out.metric_computing_time = zeros(1,q);
 
 for iter = 1:q
     tic;
+    Omega = randn(n,2*p);
     Y = in.A*Omega;
     for i = 1:1
         Y = in.A*(in.A'*Y);
     end
-    [~,~,Va] = svds(Y,p);
+    [Q,~] = qr(Y,0);
+    B = Q'*in.A;
+    [~,~,Va] = svd(B,'econ');
     out.cidx{iter} = MSelect(Va(:,1:p),p,c);
     C = in.A(:,out.cidx{iter});
     
-    Omega = randn(m,4*p);
+    Omega = randn(m,2*p);
     AT = in.A';
     Y = AT*Omega;
     for i = 1:1
         Y = AT*(AT'*Y);
     end
-    [~,~,Va]=svds(Y,p);
+    [Q,~] = qr(Y,0);
+    B = Q'*AT;
+    [~,~,Va]=svd(B,'econ');
     out.ridx{iter} = MSelect(Va(:,1:p),p,r);
     R = in.A(out.ridx{iter},:);
     
