@@ -37,29 +37,28 @@ k = in.k;
 c = in.c;
 r = in.r;
 p = in.p;
-q = in.q;
 
 out.cidx = {};
 out.ridx = {};
 
 if(in.sigma_k)
-    out.sigma_k = zeros(1,q);
+    out.sigma_k = zeros(1,1);
 end
 if(in.froerr)
-    out.froerr = zeros(1,q);
+    out.froerr = zeros(1,1);
 end
 if(in.froerr_k)
-    out.froerr_k = zeros(1,q);
+    out.froerr_k = zeros(1,1);
 end
 if(in.specerr)
-    out.specerr = zeros(1,q);
+    out.specerr = zeros(1,1);
 end
 if(in.specerr_k)
-    out.specerr_k = zeros(1,q);
+    out.specerr_k = zeros(1,1);
 end
 
-out.construct_time = zeros(1,q);
-out.metric_computing_time = zeros(1,q);
+out.construct_time = zeros(1,1);
+out.metric_computing_time = zeros(1,1);
 [m,n] = size(in.A);
 
 for iter = 1:1
