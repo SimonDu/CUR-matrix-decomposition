@@ -292,4 +292,44 @@ if wantq('randomized_unweighted')
     end
 end
 
+if wantq('near_optimal')
+    fprintf('...near_optimal\n');
+    if(in.froerr)
+        savedata.near_optimal.froerr = zeros(1,length(c_values));
+    end
+    if(in.froerr_k)
+        savedata.near_optimal.froerr_k = zeros(1,length(c_values));
+    end
+    if(in.specerr)
+        savedata.near_optimal.specerr = zeros(1,length(c_values));
+    end
+    if(in.specerr_k)
+        savedata.near_optimal.specerr_k = zeros(1,length(c_values));
+    end
+    if(in.sigma_k)
+        savedata.near_optimal.sigma_k = zeros(1,length(c_values));
+    end
+    for i =1:length(c_values)
+        in.c = c_values(i);
+        in.r = r_values(i);
+        fprintf('...running c=%d, r = %d using subspace near_optimal\n',in.c, in.r);
+        output = near_optimal(in);
+        if(in.froerr)
+            savedata.near_optimal.froerr(i) = mean(output.froerr);
+        end
+        if(in.froerr_k)
+            savedata.near_optimal.froerr_k(i) = mean(output.froerr_k);
+        end
+        if(in.specerr)
+            savedata.near_optimal.specerr(i) = mean(output.specerr);
+        end
+        if(in.specerr_k)
+            savedata.near_optimal.specerr_k(i) = mean(output.specerr_k);
+        end
+        if(in.sigma_k)
+            savedata.near_optimal.sigma_k(i) = mean(output.sigma_k);
+        end
+    end
+end
+
 end

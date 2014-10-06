@@ -14,11 +14,11 @@ in.froerr_k = 1;
 in.specerr = 0;
 in.specerr_k = 0;
 
-c_values = (in.p+1:10:150);
-r_values = (in.p+1:10:150);
+c_values = (in.p+1:10:50);
+r_values = (in.p+1:10:50);
 
 
-methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','uniform_sampling'};
+methods = {'deterministic','randomized_unweighted','subspace_expected','subspace_approxlevscore_gaussian','uniform_sampling','near_optimal'};
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 
 
