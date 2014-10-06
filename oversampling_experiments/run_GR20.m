@@ -1,8 +1,8 @@
 in.A = read_snap_data('CA-GrQc.txt');
 
 in.k = 20;
-in.c = 150;
-in.r = 150;
+in.c = 80;
+in.r = 80;
 in.q = 10;
 
 in.sigma_k = 1;
