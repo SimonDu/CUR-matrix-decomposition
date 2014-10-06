@@ -14,7 +14,7 @@ if(in.sigma_k)
     plot(c_values,out.subspace_expected.sigma_k./S(k,k),'b');
     plot(c_values,out.subspace_approxlevscore_gaussian.sigma_k./S(k,k),'g');
     plot(c_values,out.randomized_unweighted.sigma_k./S(k,k),'y');
-    plot(c_values,out.uniform_sampling.sigma_k./S(k,k),'--')
+    plot(c_values,out.uniform_sampling.sigma_k./S(k,k),'--');
     legend('deterministic','exact subspace','gaussian subspace','randomized unweighted','uniform sampling');
     xlabel('value of c');
     xlim([c_values(1),c_values(end)]);
