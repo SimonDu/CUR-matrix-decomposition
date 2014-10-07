@@ -26,7 +26,7 @@ Y = A * Omega;
 
 %% Stage B
 B = Q' * A;
-[~ ~ V] = svd(B, 'econ');
+[~, ~,  V] = svd(B, 'econ');
 
 V = V(:, 1:k);
 end

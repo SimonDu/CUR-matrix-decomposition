@@ -35,7 +35,7 @@ function out = near_optimal(in)
 
 c = in.c;
 r = in.r;
-q = in.q;
+q = 1;
 [m,n] = size(in.A);
 
 out.cidx = {};
