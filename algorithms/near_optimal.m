@@ -60,17 +60,17 @@ end
 out.construct_time = zeros(1,q);
 out.metric_computing_time = zeros(1,q);
 
-for iter=1:in.q
+for iter=1:q
     tic
     out.cidx{iter} = NearOptColSelect(in.A, in.k, c);
     C = in.A(:,out.cidx{iter});
     r1 = c;
     idx21 = NearOptColSelect(in.A', in.k, r1);
     R1 = in.A(idx21,:);
-    res = (in.A/R1)* R1;
     r2 = r - r1;
     clear R1;
     if(r2 >0)
+        res = (in.A/R1)* R1;
         res = in.A - res;
         resNorm = zero(n, 1);
         for i = 1: n

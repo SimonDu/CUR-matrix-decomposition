@@ -24,18 +24,17 @@ Ares = A * VA * VA';
 Ares = A - Ares;
 
 
-
 %% Set parameters
 epsilon = 2 * k / c;
 c1 = 2 * k * epsilon^(-2/3);
 c1 = floor(c1);
-c = min(c1, c-1);
+c1 = min(c1, c-1);
 clear epsilon;
 
 
 %% Dual Set Sparsifications
 AresFroSq = norm(Ares, 'fro')^2;
-deltaU1 = AresFroSq / (1 - sqrt(k / c));
+deltaU1 = AresFroSq / (1 - sqrt(k / c1));
 
 uu1 = zeros(n, 1);
 for iU = 1: n
@@ -44,18 +43,17 @@ end
 uu1 = uu1 / deltaU1;
 clear Ares deltaU1 AresFroSq iU;
 
-s = DualSetSparsification(uu1, VA', c);
-clear VA uu1;
+s = DualSetSparsification(uu1, VA', c1);
+clear VA u11;
 idx11 = (s' > 0);
 
 
 %% Adaptive Sampling
 C1 = A(:, idx11);
-res = C1 * (C1 \ A);
-
+res = C1 * (pinv(full(C1)) * A);
 clear C1;
 res = A - res;
-
+clear A;
 
 resNorm = ones(n, 1);
 for i = 1: n
@@ -70,6 +68,7 @@ idx12 = AdaptiveSampling(prob, c2);
 idxtmp = 1: n;
 idx11 = idxtmp(idx11);
 idx = [idx11, idx12];
+
 end
 
 
