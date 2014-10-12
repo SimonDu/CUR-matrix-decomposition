@@ -13,6 +13,7 @@ in.specerr_k = 0;
 c_values = (20:20:140);
 r_values = (20:20:140);
 
+in.adaptive = 0;
 
 methods = {'deterministic','randomized_unweighted','subspace_expected','subspace_approxlevscore_gaussian','uniform_sampling','near_optimal'};
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);

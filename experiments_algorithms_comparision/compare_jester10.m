@@ -12,6 +12,8 @@ in.froerr_k = 1;
 in.specerr = 0;
 in.specerr_k = 0;
 
+in.adaptive = 0;
+
 c_values = (20:10:100);
 r_values = (20:10:100);
 
