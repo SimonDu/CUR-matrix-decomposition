@@ -2,7 +2,7 @@
 in.A = read_dexter;
 
 in.k = 10;
-in.p = 20;
+in.p = 10;
 in.q = 10;
 
 in.sigma_k = 1;
@@ -11,8 +11,8 @@ in.froerr_k = 1;
 in.specerr = 0;
 in.specerr_k = 0;
 
-c_values = (80:10:150);
-r_values = (80:10:150);
+c_values = (20:20:140);
+r_values = (20:20:140);
 
 
 methods = {'deterministic','randomized_unweighted','subspace_expected','subspace_approxlevscore_gaussian','uniform_sampling','near_optimal'};
