@@ -1,6 +1,7 @@
-in.A = read_snap_data('CA-GrQc.txt');
+%load data
+in.A = read_dexter;
 
-in.k = 20;
+in.k = 10;
 in.p = 20;
 in.q = 10;
 
@@ -18,9 +19,9 @@ methods = {'deterministic','randomized_unweighted','subspace_expected','subspace
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 
 
-save('./output/compare_GR20')
+save('./output/compare_dexter10')
 
 c_values_plot;
-saveas(gcf,'./plots/c_plots_GR20','fig');
-export_fig(gcf,'./plots/c_plots_GR20.pdf');
+saveas(gcf,'./plots/c_plots_dexter10','fig');
+export_fig(gcf,'./plots/c_plots_dexter10.pdf');
 close all;
