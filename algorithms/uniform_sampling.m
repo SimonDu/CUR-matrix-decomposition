@@ -8,12 +8,12 @@ function out = uniform_sampling(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+% - adaptive, 1 if we want to do adaptive sampling
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
 % - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
 % - specerr, 1 if we want output contain specerr, 0 otherwise
 % - specerr_k, 1 if we want output contain specerr_k, 0 otherwise
-
 %
 % out is a structure with the following fields:
 %  - cidx, c*q matrix represents the column index we choose for each
@@ -68,7 +68,12 @@ for iter=1:in.q
     out.cidx{iter} = permutation(1:c);
     C = in.A(:,out.cidx{iter});
     permutation = randperm(m);
-    out.ridx{iter} = permutation(1:r);
+    idx21 = permutation(1:c);
+    if(in.adaptive)
+        out.ridx{iter} = adaptive_sampling(in.A,idx21,r-c);
+    else
+        out.ridx{iter} = idx21;
+    end
     R = in.A(out.ridx{iter},:);
     out.construct_time(1,iter) = toc;
     

@@ -48,7 +48,12 @@ out.cidx(:,1) = MSelect(Va(:,1:p),p,c);
 C = in.A(:,out.cidx);
 
 [~,~,Va]=svds(in.A',p);
-out.ridx(:,1) = MSelect(Va(:,1:p),p,r);
+idx21 = MSelect(Va(:,1:p),p,c);
+if(in.adaptive)
+    out.ridx(:,1) = adaptive_sampling(in.A,idx21,r-c);
+else
+    out.ridx(:,1) = idx21;
+end
 R = in.A(out.ridx,:);
 out.construct_time(1,1) = toc;
 

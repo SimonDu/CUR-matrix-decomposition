@@ -67,7 +67,12 @@ for iter=1:in.q
         out.cidx{iter} = CX_SubspaceExpected(Va, p, c);
         C = in.A(:,out.cidx{iter});
         
-        out.ridx{iter} = CX_SubspaceExpected(Ua, p, r);
+        idx21 = CX_SubspaceExpected(Ua, p, c);
+        if(in.adaptive)
+        out.ridx{iter} = adaptive_sampling(in.A,idx21,r-c);
+        else
+        out.ridx{iter} = idx21;
+        end
         R = in.A(out.ridx{iter},:);
 
     out.construct_time(1,iter) = toc;

@@ -8,6 +8,7 @@ function out = randomized_unweighted(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+% - adaptive, 1 if we want adaptive sampling
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
 % - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
@@ -83,7 +84,12 @@ for iter = 1:1
     [Q,~] = qr(Y,0);
     B = Q'*AT;
     [~,~,Va]=svd(B,'econ');
-    out.ridx{iter} = MSelect(Va(:,1:p),p,r);
+    idx21 = MSelect(Va(:,1:p),p,c);
+    if(in.adaptive)
+        out.ridx{iter} = adaptive_sampling(in.A,idx21,r-c);
+    else
+        out.ridx{iter} = idx21;
+    end
     R = in.A(out.ridx{iter},:);
     
     out.construct_time(1,iter) = toc;

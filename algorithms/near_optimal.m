@@ -65,24 +65,9 @@ for iter=1:q
     tic
     out.cidx{iter} = NearOptColSelect(in.A, in.k, c);
     C = in.A(:,out.cidx{iter});
-    r1 = c;
-    idx21 = NearOptColSelect(in.A', in.k, r-r1);   
+    idx21 = NearOptColSelect(in.A', in.k, c);   
     if(in.adaptive)
-%         R1 = in.A(idx21,:);
-%         r2 = r - r1;
-%         res = (in.A/R1)* R1;
-%         res = in.A - res;
-%         resNorm = zeros(n, 1);
-%         for i = 1: n
-%             resNorm(i) = norm(res(:, i))^2;
-%         end
-%         clear res;
-%         prob = resNorm / sum(resNorm);
-%         idx22 = AdaptiveSampling(prob, r2);
-%         idxtmp = 1: n;
-%         idx21 = idxtmp(idx21);
-%         out.ridx{iter} = [idx21, idx22];
-        out.ridx{iter} = adaptive_sampling(in.A,idx21,r);
+        out.ridx{iter} = adaptive_sampling(in.A,idx21,r-c);
     else
         out.ridx{iter} = idx21;
     end

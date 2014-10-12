@@ -8,6 +8,7 @@ function out = subspace_approxlevscore_gaussian(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+% - adaptive, 1 if we want do adaptive sampling
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
 % - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
@@ -74,28 +75,25 @@ for iter=1:in.q
     for i=1:c
         colindices(i) = find(cumsum(levscoreprobs) >= rand(),1);
     end
-    scalingfactors = levscoreprobs(colindices).^(1/2);
-    Id = speye(m);
-    S = Id(:,colindices)*diag(1./scalingfactors);
-    out.cidx = colindices;
-    C = in.A*S;
+    out.cidx{iter} = colindices;
+    C = in.A(:,out.cidx{iter});
     
-    
-    out.approxlevscores = ...
-        spectral_sketch_levscores(in.A',p);
+    out.approxlevscores = spectral_sketch_levscores(in.A',p);
     levscoreprobs = out.approxlevscores/p;
-    
     % sample according to those leverage scores
-    colindices = ones(1,r);
-    for i=1:r
+    colindices = ones(1,c);
+    for i=1:c
         colindices(i) = find(cumsum(levscoreprobs) >= rand(),1);
     end
-    scalingfactors = levscoreprobs(colindices).^(1/2);
-    Id = speye(n);
-    S = Id(:,colindices)*diag(1./scalingfactors);
-    out.ridx = colindices;
-    R = S'*in.A;
+    idx21 = colindices;
     
+    if(in.adaptive)
+        out.ridx{iter} = adaptive_sampling(in.A,idx21,r-c);
+    else
+        out.ridx{iter} = idx21;
+    end
+    
+    R = in.A(out.ridx{iter},:);
     out.construct_time(1,iter) = toc;
     
     tic
