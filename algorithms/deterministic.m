@@ -8,6 +8,7 @@ function out = deterministic(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+% - adptive, 1 if we want adaptive sampling (r > c)
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
 % - froerr_k, 1 if we want output contain froerr_k, 0 otherwise

@@ -7,6 +7,7 @@ function out = near_optimal(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
+% - adaptive, 1 if we want to adaptive sampling
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
 % - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
@@ -65,23 +66,23 @@ for iter=1:q
     out.cidx{iter} = NearOptColSelect(in.A, in.k, c);
     C = in.A(:,out.cidx{iter});
     r1 = c;
-    idx21 = NearOptColSelect(in.A', in.k, r1);
-    R1 = in.A(idx21,:);
-    r2 = r - r1;
-    clear R1;
-    if(r2 >0)
-        res = (in.A/R1)* R1;
-        res = in.A - res;
-        resNorm = zero(n, 1);
-        for i = 1: n
-            resNorm(i) = norm(res(:, i))^2;
-        end
-        clear res;
-        prob = resNorm / sum(resNorm);
-        idx22 = AdaptiveSampling(prob, r2);
-        idxtmp = 1: n;
-        idx21 = idxtmp(idx21);
-        out.ridx{iter} = [idx21, idx22];
+    idx21 = NearOptColSelect(in.A', in.k, r-r1);   
+    if(in.adaptive)
+%         R1 = in.A(idx21,:);
+%         r2 = r - r1;
+%         res = (in.A/R1)* R1;
+%         res = in.A - res;
+%         resNorm = zeros(n, 1);
+%         for i = 1: n
+%             resNorm(i) = norm(res(:, i))^2;
+%         end
+%         clear res;
+%         prob = resNorm / sum(resNorm);
+%         idx22 = AdaptiveSampling(prob, r2);
+%         idxtmp = 1: n;
+%         idx21 = idxtmp(idx21);
+%         out.ridx{iter} = [idx21, idx22];
+        out.ridx{iter} = adaptive_sampling(in.A,idx21,r);
     else
         out.ridx{iter} = idx21;
     end
