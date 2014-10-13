@@ -19,6 +19,4 @@ output/medline5.mat
 
 *.fig
 
-datasets/dextertestdata.sparse
-
 datasets/dexter_train.labels
