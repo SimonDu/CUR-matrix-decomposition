@@ -11,17 +11,17 @@ in.specerr = 0;
 in.specerr_k = 0;
 
 c_values = (40:20:140);
-r_values = (40:20:140);
+r_values = 2*c_values;
 
-in.adaptive = 0;
+in.adaptive = 1;
 
 methods = {'deterministic','randomized_unweighted','subspace_expected','subspace_approxlevscore_gaussian','uniform_sampling','near_optimal'};
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 
 
-save('./output/compare_GR20')
+save('./output/compare_GR20_adaptive')
 
 c_values_plot;
-saveas(gcf,'./plots/c_plots_GR20','fig');
-export_fig(gcf,'./plots/c_plots_GR20.pdf');
+saveas(gcf,'./plots/c_plots_GR20_adaptive','fig');
+export_fig(gcf,'./plots/c_plots_GR20_adaptive.pdf');
 close all;

@@ -65,7 +65,7 @@ for iter=1:q
     tic
     out.cidx{iter} = NearOptColSelect(in.A, in.k, c);
     C = in.A(:,out.cidx{iter});
-    idx21 = NearOptColSelect(in.A', in.k, c);   
+    idx21 = NearOptColSelect(in.A', in.k, c);
     if(in.adaptive)
         out.ridx{iter} = adaptive_sampling(in.A,idx21,r-c);
     else

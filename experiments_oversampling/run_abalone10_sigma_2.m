@@ -18,7 +18,7 @@ in.specerr_k = 0;
 in.adaptive = 0;
 
 methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','randomized_unweighted'};
-p_values = (10:19);
+p_values = (10:39);
 
 s = svds(in.A,p_values(end));
 plot(p_values,s(p_values(1):end)./s(p_values(1)));
@@ -28,7 +28,7 @@ close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/abalone10_sigma_2')
+save('./output/p_plots_abalone10_sigma_2')
 
 p_values_plot_deterministic;
 saveas(gcf,'./plots/p_plots_abalone10_sigma_2_deterministic','fig');

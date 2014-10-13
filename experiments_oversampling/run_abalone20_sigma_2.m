@@ -28,7 +28,7 @@ close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/abalone20_sigma_2')
+save('./output/p_plots_abalone20_sigma_2')
 
 p_values_plot_deterministic;
 export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_deterministic.pdf');

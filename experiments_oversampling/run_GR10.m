@@ -24,7 +24,7 @@ close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/GR10')
+save('./output/p_plots_GR10')
 
 p_values_plot_deterministic;
 saveas(gcf,'./plots/p_plots_GR10_deterministic','fig');
