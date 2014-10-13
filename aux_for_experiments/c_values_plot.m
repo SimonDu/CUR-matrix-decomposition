@@ -70,7 +70,8 @@ if(in.specerr)
     plot(c_values,out.subspace_approxlevscore_gaussian.specerr./spec_A_A_k,'Color','b','LineStyle','--');
     plot(c_values,out.uniform_sampling.specerr./spec_A_A_k,'g');
     plot(c_values,out.near_optimal.specerr./spec_A_A_k,'k');
-    legend('unweighted deterministic','randomized unweighted','exact subspace','gaussian subspace','uniform sampling','near optimal');
+    h_legend = legend('unweighted deterministic','randomized unweighted','exact subspace','gaussian subspace','uniform sampling','near optimal','Location','northeast');
+    set(h_legend,'FontSize',5);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR||_2/||A-A_k||_2','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -87,7 +88,8 @@ if(in.specerr_k)
     plot(c_values,out.subspace_approxlevscore_gaussian.specerr_k./spec_A_A_k,'Color','b','LineStyle','--');
     plot(c_values,out.uniform_sampling.specerr_k./spec_A_A_k,'g');
     plot(c_values,out.near_optimal.specerr_k./spec_A_A_k,'k');
-    legend('unweighted deterministic','randomized unweighted','exact subspace','gaussian subspace','uniform sampling','near optimal');
+    h_legend = legend('unweighted deterministic','randomized unweighted','exact subspace','gaussian subspace','uniform sampling','near optimal','Location','northeast');
+    set(h_legend,'FontSize',5);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR_k||_2/||A-A_k||_2','FontSize',15);
     xlim([c_values(1),c_values(end)]);

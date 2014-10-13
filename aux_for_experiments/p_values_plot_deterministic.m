@@ -12,7 +12,8 @@ if(in.sigma_k)
     title('Kth Singular Value Ratio');
     hold on;
     plot(p_values,out.deterministic.sigma_k./S(k,k),'r');
-    legend('deterministic');
+    h_legend = legend('deterministic');
+    set(h_legend,'FontSize',5);
     xlabel('value of p','FontSize',15);
     ylabel('\sigma_k(CUR)/\sigma_k(A)','FontSize',15);
     xlim([p_values(1),p_values(end)]);
@@ -24,7 +25,8 @@ if(in.froerr)
     title('Frobenius Norm Error');
     hold on;
     plot(p_values,out.deterministic.froerr./fro_A_A_k,'r');
-    legend('deterministic');
+    h_legend = legend('deterministic');
+    set(h_legend,'FontSize',5);
     xlabel('value of p','FontSize',15);
     ylabel('||A-CUR||_F/||A-A_k||_F','FontSize',15);
     xlim([p_values(1),p_values(end)]);
@@ -36,7 +38,8 @@ if(in.froerr_k)
     title('Rank K Frobenius Norm Error');
     hold on;
     plot(p_values,out.deterministic.froerr_k./fro_A_A_k,'r');
-    legend('deterministic');
+    h_legend = legend('deterministic');
+    set(h_legend,'FontSize',5);
     xlabel('value of p','FontSize',15);
     ylabel('||A-CUR_k||_F/||A-A_k||_F','FontSize',15);
     xlim([p_values(1),p_values(end)]);
@@ -48,7 +51,8 @@ if(in.specerr)
     title('Spectral Norm Error');
     hold on;
     plot(p_values,out.deterministic.specerr./spec_A_A_k,'r');
-    legend('deterministic');
+    h_legend = legend('deterministic');
+    set(h_legend,'FontSize',5);
     xlabel('value of p','FontSize',15);
     ylabel('||A-CUR||_2/||A-A_k||_2','FontSize',15);
     xlim([p_values(1),p_values(end)]);
@@ -60,7 +64,9 @@ if(in.specerr_k)
     title('Rank K Spectral Norm Error');
     hold on;
     plot(p_values,out.deterministic.specerr_k./spec_A_A_k,'r');
+    h_legend = legend('deterministic');
+    set(h_legend,'FontSize',5);
     xlabel('value of c','FontSize',15);
-    ylabel('||A-CUR_k||_2/||A-A_k||_2','FontSize',15);;
+    ylabel('||A-CUR_k||_2/||A-A_k||_2','FontSize',15);
     xlim([p_values(1),p_values(end)]);
 end
