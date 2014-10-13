@@ -11,6 +11,8 @@ in.froerr_k = 1;
 in.specerr = 0;
 in.specerr_k = 0;
 
+in.adaptive = 0;
+
 methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','randomized_unweighted'};
 p_values = (20:40);
 

@@ -18,12 +18,11 @@ function approxlevscores = spectral_sketch_levscores(A,k)
 % needed
 
 chunk = 10;
-n = size(A,1);
+n = size(A,2);
 S = randn(n, 2*k);
 % Estimate 2*log(1 + eps/10) - 1/2 from the bound in the paper as 1
 % q = ceil( log(1 + sqrt(k/(k-1)) + exp(1)*sqrt(2*(n-k)/k)) );
 q = 1; % if you use the above expression, for n=10000, k=30, q would be about 5
-
 
 
 Y = A*S;

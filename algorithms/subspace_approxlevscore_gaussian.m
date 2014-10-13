@@ -66,8 +66,7 @@ for iter=1:in.q
     tic
     
     % compute the approximate leverage scores
-    out.approxlevscores = ...
-        spectral_sketch_levscores(in.A,p);
+    out.approxlevscores = spectral_sketch_levscores(in.A',p);
     levscoreprobs = out.approxlevscores/p;
     
     % sample according to those leverage scores
@@ -78,7 +77,7 @@ for iter=1:in.q
     out.cidx{iter} = colindices;
     C = in.A(:,out.cidx{iter});
     
-    out.approxlevscores = spectral_sketch_levscores(in.A',p);
+    out.approxlevscores = spectral_sketch_levscores(in.A,p);
     levscoreprobs = out.approxlevscores/p;
     % sample according to those leverage scores
     colindices = ones(1,c);
