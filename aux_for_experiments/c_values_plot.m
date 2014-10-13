@@ -62,7 +62,7 @@ end
 %specerr
 if(in.specerr)
     subplot(2,3,4);
-    title('Spectral Norm of Approximation Error');
+    title('Spectral Norm Error');
     hold on;
     plot(c_values,out.deterministic.specerr./spec_A_A_k,'r');
     plot(c_values,out.randomized_unweighted.specerr./spec_A_A_k,'Color','r','LineStyle','--');
@@ -79,7 +79,7 @@ end
 %speccerr_k
 if(in.specerr_k)
     subplot(2,3,5);
-    title('Spectral Norm Error of Rank-k Approximation');
+    title('Rank K Spectral Norm Error');
     hold on;
     plot(c_values,out.deterministic.specerr_k./spec_A_A_k,'r');
     plot(c_values,out.randomized_unweighted.specerr_k./spec_A_A_k,'Color','r','LineStyle','--');
