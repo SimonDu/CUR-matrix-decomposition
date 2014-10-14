@@ -17,7 +17,7 @@ if(in.sigma_k)
     plot(c_values,out.uniform_sampling.sigma_k./S(k,k),'g');
     plot(c_values,out.near_optimal.sigma_k./S(k,k),'k');
     h_legend = legend('unweighted','subspace','uniform','near optimal','Location','southeast');
-    set(h_legend,'FontSize',10);
+    set(h_legend,'FontSize',8);
     xlabel('value of c','FontSize',15);
     ylabel('\sigma_k(CUR)/\sigma_k(A)','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -35,7 +35,7 @@ if(in.froerr)
     plot(c_values,out.uniform_sampling.froerr./fro_A_A_k,'g');
     plot(c_values,out.near_optimal.froerr./fro_A_A_k,'k');
     h_legend = legend('unweighted','subspace','uniform','near optimal','Location','northeast');
-    set(h_legend,'FontSize',10);
+    set(h_legend,'FontSize',8);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR||_F/||A-A_k||_F','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -53,7 +53,7 @@ if(in.froerr_k)
     plot(c_values,out.uniform_sampling.froerr_k./fro_A_A_k,'g');
     plot(c_values,out.near_optimal.froerr_k./fro_A_A_k,'k');
     h_legend = legend('unweighted','subspace','uniform','near optimal','Location','northeast');
-    set(h_legend,'FontSize',10);
+    set(h_legend,'FontSize',8);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR_k||_F/||A-A_k||_F','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -71,7 +71,7 @@ if(in.specerr)
     plot(c_values,out.uniform_sampling.specerr./spec_A_A_k,'g');
     plot(c_values,out.near_optimal.specerr./spec_A_A_k,'k');
     h_legend = legend('unweighted','subspace','uniform','near optimal','Location','northeast');
-    set(h_legend,'FontSize',10);
+    set(h_legend,'FontSize',8);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR||_2/||A-A_k||_2','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -89,7 +89,7 @@ if(in.specerr_k)
     plot(c_values,out.uniform_sampling.specerr_k./spec_A_A_k,'g');
     plot(c_values,out.near_optimal.specerr_k./spec_A_A_k,'k');
     h_legend = legend('unweighted','subspace','uniform','near optimal','Location','northeast');
-    set(h_legend,'FontSize',10);
+    set(h_legend,'FontSize',8);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR_k||_2/||A-A_k||_2','FontSize',15);
     xlim([c_values(1),c_values(end)]);
