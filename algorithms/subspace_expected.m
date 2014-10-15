@@ -63,7 +63,9 @@ out.metric_computing_time = zeros(1,q);
 
 for iter=1:in.q
     tic
-        [Ua,~,Va]=svds(in.A,in.p);
+        if(iter == 1)
+            [Ua,~,Va]=svds(in.A,in.p);
+        end
         out.cidx{iter} = CX_SubspaceExpected(Va, p, c);
         C = in.A(:,out.cidx{iter});
         
