@@ -7,7 +7,7 @@ spec_A_A_k = svds(A-U*S*V',1);
 figure;
 %sigma_k_plot
 if(in.sigma_k)
-    subplot(2,3,1);
+    subplot(2,5,1);
     title('Kth Singular Value Ratio');
     hold on;
     plot(c_values,out.deterministic.sigma_k./S(k,k),'Color','r');
@@ -25,7 +25,7 @@ end
 
 %froerr-plot
 if(in.froerr)
-    subplot(2,3,2);
+    subplot(2,5,2);
     title('Frobenius Norm Error');
     hold on;
     plot(c_values,out.deterministic.froerr./fro_A_A_k,'r');
@@ -43,7 +43,7 @@ end
 
 %froerr_k
 if(in.froerr_k)
-    subplot(2,3,3);
+    subplot(2,5,3);
     title('Rank K F-Norm Error');
     hold on;
     plot(c_values,out.deterministic.froerr_k./fro_A_A_k,'r');
@@ -61,7 +61,7 @@ end
 
 %specerr
 if(in.specerr)
-    subplot(2,3,4);
+    subplot(2,5,4);
     title('Spectral Norm Error');
     hold on;
     plot(c_values,out.deterministic.specerr./spec_A_A_k,'r');
@@ -79,7 +79,7 @@ end
 
 %speccerr_k
 if(in.specerr_k)
-    subplot(2,3,5);
+    subplot(2,5,5);
     title('Rank K Spectral Norm Error');
     hold on;
     plot(c_values,out.deterministic.specerr_k./spec_A_A_k,'r');
