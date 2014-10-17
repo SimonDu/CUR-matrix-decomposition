@@ -8,8 +8,8 @@ in.q = 10;
 in.sigma_k = 1;
 in.froerr = 1;
 in.froerr_k = 1;
-in.specerr = 0;
-in.specerr_k = 0;
+in.specerr = 1;
+in.specerr_k = 1;
 
 in.adaptive = 0;
 

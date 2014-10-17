@@ -5,9 +5,9 @@ in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
 in.k = 20;
-in.c = 150;
-in.r = 150;
-in.q = 10;
+in.c = 140;
+in.r = 140;
+in.q = 20;
 
 in.sigma_k = 1;
 in.froerr = 1;
@@ -17,7 +17,7 @@ in.specerr_k = 0;
 
 in.adaptive = 0;
 
-methods = {'deterministic','subspace_expected','subspace_approxlevscore_gaussian','randomized_unweighted'};
+methods = {'subspace_expected','deterministic'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
@@ -31,17 +31,19 @@ out = run_dataset_different_p(in,methods,p_values);
 save('./output/p_plots_abalone20_sigma_2')
 
 p_values_plot_deterministic;
+saveas(gcf,'./plots/p_plots_abalone20_sigma_2_deterministic','fig');
 export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_deterministic.pdf');
 close all;
 
 p_values_plot_subspace_expected;
+saveas(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_expected','fig');
 export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_expected.pdf');
 close all;
 
-p_values_plot_subspace_approxlevscore_gaussian;
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_approxlevscore_gaussian.pdf');
-close all;
-
-p_values_plot_randomized_unweighted;
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_randomized_unweighted.pdf');
-close all;
+% p_values_plot_subspace_approxlevscore_gaussian;
+% export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_subspace_approxlevscore_gaussian.pdf');
+% close all;
+% 
+% p_values_plot_randomized_unweighted;
+% export_fig(gcf,'./plots/p_plots_abalone20_sigma_2_randomized_unweighted.pdf');
+% close all;
