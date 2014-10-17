@@ -5,22 +5,22 @@ in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
 in.k = 20;
-in.p = 39;
+in.p = 29;
 in.q = 10;
 
 in.sigma_k = 1;
 in.froerr = 1;
 in.froerr_k = 1;
-in.specerr = 0;
-in.specerr_k = 0;
+in.specerr = 1;
+in.specerr_k = 1;
 
 in.adaptive = 0;
 
-c_values = (in.p+1:10:150);
-r_values = (in.p+1:10:150);
+c_values = (in.p+1:20:130);
+r_values = (in.p+1:20:130);
 
 
-methods = {'deterministic','randomized_unweighted','subspace_expected','subspace_approxlevscore_gaussian','uniform_sampling','near_optimal'};
+methods = {'deterministic','subspace_expected','uniform_sampling','near_optimal'};
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 
 
