@@ -27,5 +27,6 @@ out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 save('./output/compare_abalone20_sigma_2')
 
 c_values_plot;
+saveas(gcf,'./plots/c_plots_abalone_20_sigma_2','fig');
 export_fig(gcf,'./plots/c_plots_abalone_20_sigma_2.pdf');
 close all;

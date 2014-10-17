@@ -1,13 +1,13 @@
 [m,n] = size(in.A)
 100*nnz(in.A)/(m*n)
-k = 10
+k = in.k
 [U,S,V] = svds(in.A,k);
 A_k = U*S*V';
 
 f_norm = norm(in.A,'fro');
 two_norm = svds(in.A,1);
 
-ceil(f_norm/two_norm)
+ceil((f_norm/two_norm)^2)
 100*norm(in.A-A_k,'fro')/norm(in.A,'fro')
 
 for i=1:m
