@@ -5,9 +5,9 @@ in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
 in.k = 20;
-in.c = 150;
-in.r = 150;
-in.q = 10;
+in.c = 140;
+in.r = 140;
+in.q = 20;
 
 in.sigma_k = 1;
 in.froerr = 1;
