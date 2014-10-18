@@ -2,8 +2,8 @@
 load('Reuters21578.mat');
 in.A = fea;
 
-in.k = 10;
-in.p = 10;
+in.k = 20;
+in.p = 20;
 in.q = 10;
 
 in.sigma_k = 1;
@@ -14,8 +14,8 @@ in.specerr_k = 1;
 
 in.adaptive = 0;
 
-c_values = (20:20:140);
-r_values = (20:20:140);
+c_values = (40:20:140);
+r_values = (40:20:140);
 
 
 methods = {'deterministic','subspace_expected','uniform_sampling','near_optimal'};
