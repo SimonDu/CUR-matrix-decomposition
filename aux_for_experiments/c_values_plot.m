@@ -14,11 +14,11 @@ if(in.sigma_k)
     hold on;
     
 %     plot(c_values,out.randomized_unweighted.sigma_k./S(k,k),'Color','y','LineStyle','--');
-    plot(c_values,out.subspace_expected.sigma_k./S(k,k),'-bo','LineWidth',1.1);
+    plot(c_values,out.subspace_expected.sigma_k./S(k,k),'-bo','LineWidth',2);
 %     plot(c_values,out.subspace_approxlevscore_gaussian.sigma_k./S(k,k),'Color','b','LineStyle','--');
-    plot(c_values,out.uniform_sampling.sigma_k./S(k,k),'-g+','LineWidth',1.1);
-    plot(c_values,out.near_optimal.sigma_k./S(k,k),'-ks','LineWidth',1.1);
-    plot(c_values,out.deterministic.sigma_k./S(k,k),'-rx','LineWidth',1.1);
+    plot(c_values,out.uniform_sampling.sigma_k./S(k,k),'-g+','LineWidth',2);
+    plot(c_values,out.near_optimal.sigma_k./S(k,k),'-ks','LineWidth',2);
+    plot(c_values,out.deterministic.sigma_k./S(k,k),'-rx','LineWidth',2);
     h_legend = legend('subspace','uniform','near optimal','unweighted','Location','southeast');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);
@@ -34,11 +34,11 @@ if(in.froerr)
     hold on;
     
 %     plot(c_values,out.randomized_unweighted.froerr./fro_A_A_k,'Color','r','LineStyle','--');
-    plot(c_values,out.subspace_expected.froerr./fro_A_A_k,'-bo','LineWidth',1.1);
+    plot(c_values,out.subspace_expected.froerr./fro_A_A_k,'-bo','LineWidth',2);
 %     plot(c_values,out.subspace_approxlevscore_gaussian.froerr./fro_A_A_k,'Color','b','LineStyle','--');
-    plot(c_values,out.uniform_sampling.froerr./fro_A_A_k,'-g+','LineWidth',1.1);
-    plot(c_values,out.near_optimal.froerr./fro_A_A_k,'-ks','LineWidth',1.1);
-    plot(c_values,out.deterministic.froerr./fro_A_A_k,'-rx','LineWidth',1.1);
+    plot(c_values,out.uniform_sampling.froerr./fro_A_A_k,'-g+','LineWidth',2);
+    plot(c_values,out.near_optimal.froerr./fro_A_A_k,'-ks','LineWidth',2);
+    plot(c_values,out.deterministic.froerr./fro_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('subspace','uniform','near optimal','unweighted','Location','northeast');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);
@@ -54,11 +54,11 @@ if(in.froerr_k)
     hold on;
     
 %     plot(c_values,out.randomized_unweighted.froerr_k./fro_A_A_k,'Color','r','LineStyle','--');
-    plot(c_values,out.subspace_expected.froerr_k./fro_A_A_k,'-bo','LineWidth',1.1);
+    plot(c_values,out.subspace_expected.froerr_k./fro_A_A_k,'-bo','LineWidth',2);
 %     plot(c_values,out.subspace_approxlevscore_gaussian.froerr_k./fro_A_A_k,'Color','b','LineStyle','--');
-    plot(c_values,out.uniform_sampling.froerr_k./fro_A_A_k,'-g+','LineWidth',1.1);
-    plot(c_values,out.near_optimal.froerr_k./fro_A_A_k,'-ks','LineWidth',1.1);
-    plot(c_values,out.deterministic.froerr_k./fro_A_A_k,'-rx','LineWidth',1.1);
+    plot(c_values,out.uniform_sampling.froerr_k./fro_A_A_k,'-g+','LineWidth',2);
+    plot(c_values,out.near_optimal.froerr_k./fro_A_A_k,'-ks','LineWidth',2);
+    plot(c_values,out.deterministic.froerr_k./fro_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('subspace','uniform','near optimal','unweighted','Location','northeast');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);
@@ -74,11 +74,11 @@ if(in.specerr)
     hold on;
     
 %     plot(c_values,out.randomized_unweighted.specerr./spec_A_A_k,'Color','r','LineStyle','--');
-    plot(c_values,out.subspace_expected.specerr./spec_A_A_k,'-bo','LineWidth',1.1);
+    plot(c_values,out.subspace_expected.specerr./spec_A_A_k,'-bo','LineWidth',2);
 %     plot(c_values,out.subspace_approxlevscore_gaussian.specerr./spec_A_A_k,'Color','b','LineStyle','--');
-    plot(c_values,out.uniform_sampling.specerr./spec_A_A_k,'-g+','LineWidth',1.1);
-    plot(c_values,out.near_optimal.specerr./spec_A_A_k,'-ks','LineWidth',1.1);
-    plot(c_values,out.deterministic.specerr./spec_A_A_k,'-rx','LineWidth',1.1);
+    plot(c_values,out.uniform_sampling.specerr./spec_A_A_k,'-g+','LineWidth',2);
+    plot(c_values,out.near_optimal.specerr./spec_A_A_k,'-ks','LineWidth',2);
+    plot(c_values,out.deterministic.specerr./spec_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('subspace','uniform','near optimal','unweighted','Location','northeast');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);
@@ -94,11 +94,11 @@ if(in.specerr_k)
     hold on;
     
 %     plot(c_values,out.randomized_unweighted.specerr_k./spec_A_A_k,'Color','r','LineStyle','--');
-    plot(c_values,out.subspace_expected.specerr_k./spec_A_A_k,'-bo','LineWidth',1.1);
+    plot(c_values,out.subspace_expected.specerr_k./spec_A_A_k,'-bo','LineWidth',2);
 %     plot(c_values,out.subspace_approxlevscore_gaussian.specerr_k./spec_A_A_k,'Color','b','LineStyle','--');
-    plot(c_values,out.uniform_sampling.specerr_k./spec_A_A_k,'-g+','LineWidth',1.1);
-    plot(c_values,out.near_optimal.specerr_k./spec_A_A_k,'-ks','LineWidth',1.1);
-    plot(c_values,out.deterministic.specerr_k./spec_A_A_k,'-rx','LineWidth',1.1);
+    plot(c_values,out.uniform_sampling.specerr_k./spec_A_A_k,'-g+','LineWidth',2);
+    plot(c_values,out.near_optimal.specerr_k./spec_A_A_k,'-ks','LineWidth',2);
+    plot(c_values,out.deterministic.specerr_k./spec_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('subspace','uniform','near optimal','unweighted','Location','northeast');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);
