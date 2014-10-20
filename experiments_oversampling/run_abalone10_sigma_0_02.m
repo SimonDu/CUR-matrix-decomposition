@@ -1,12 +1,12 @@
-in.sigma = 2;
+in.sigma = 0.03;
 load abalone_dataset;
 X = generate_distance_matrix(abaloneInputs');
 in.A = generate_RBF_kernel(X, in.sigma);
 clear X;
 
 in.k = 10;
-in.c = 100;
-in.r = 100;
+in.c = 40;
+in.r = 40;
 in.q = 20;
 
 in.sigma_k = 1;
@@ -22,22 +22,20 @@ p_values = (10:20);
 
 s = svds(in.A,p_values(end));
 plot(p_values,s(p_values(1):end)./s(p_values(1)));
-title('Singular Value Decay','FontSize',15);
-xlabel('value of p','15');
-ylabel('pth singular value','15');
-export_fig('./plots/decay_abalone10_sigma_2.pdf');
+title('singular value decay');
+export_fig('./plots/decay_abalone10_sigma_0_02.pdf');
 close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/p_plots_abalone10_sigma_2')
+save('./output/p_plots_abalone10_sigma_0_02')
 
 p_values_plot_subspace_expected;
-saveas(gcf,'./plots/p_plots_abalone10_sigma_2_subspace_expected','fig');
-export_fig(gcf,'./plots/p_plots_abalone10_sigma_2_subspace_expected.pdf');
+saveas(gcf,'./plots/p_plots_abalone10_sigma_0_02_subspace_expected','fig');
+export_fig(gcf,'./plots/p_plots_abalone10_sigma_0_02_subspace_expected.pdf');
 close all;
 
 p_values_plot_deterministic;
-saveas(gcf,'./plots/p_plots_abalone10_sigma_2_deterministic','fig');
-export_fig(gcf,'./plots/p_plots_abalone10_sigma_2_deterministic.pdf');
+saveas(gcf,'./plots/p_plots_abalone10_sigma_0_02_deterministic','fig');
+export_fig(gcf,'./plots/p_plots_abalone10_sigma_0_02_deterministic.pdf');
 close all;
