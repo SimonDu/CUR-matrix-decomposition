@@ -1,8 +1,8 @@
 in.A = read_snap_data('CA-GrQc.txt');
 
 in.k = 20;
-in.c = 100;
-in.r = 100;
+in.c = 140;
+in.r = 140;
 in.q = 10;
 
 in.sigma_k = 1;
@@ -14,7 +14,7 @@ in.specerr_k = 1;
 in.adaptive = 0;
 
 methods = {'deterministic','subspace_expected'};
-p_values = (20:30);
+p_values = (20:40);
 
 
 s = svds(in.A,p_values(end));

@@ -26,10 +26,10 @@ out = run_dataset_different_p(in,methods,p_values);
 
 save('./output/p_plots_GR10')
 
-% p_values_plot_deterministic;
-% saveas(gcf,'./plots/p_plots_GR10_deterministic','fig');
-% export_fig(gcf,'./plots/p_plots_GR10_deterministic.pdf');
-% close all;
+p_values_plot_deterministic;
+saveas(gcf,'./plots/p_plots_GR10_deterministic','fig');
+export_fig(gcf,'./plots/p_plots_GR10_deterministic.pdf');
+close all;
 
 p_values_plot_subspace_expected;
 saveas(gcf,'./plots/p_plots_GR10_subspace_expected','fig');
