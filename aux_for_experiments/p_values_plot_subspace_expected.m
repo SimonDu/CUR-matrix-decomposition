@@ -11,7 +11,7 @@ if(in.sigma_k)
     subplot(1,5,1);
     title('kth Singular Value Ratio','FontSize',15);
     hold on;
-    plot(p_values,out.subspace_expected.sigma_k./S(k,k),'b');
+    plot(p_values,out.subspace_expected.sigma_k./S(k,k),'-bo','LineWidth',2);
     h_legend = legend('subspace');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
@@ -24,7 +24,7 @@ if(in.froerr)
     subplot(1,5,2);
     title('Frobenius Norm Error','FontSize',15);
     hold on;
-    plot(p_values,out.subspace_expected.froerr./fro_A_A_k,'b');
+    plot(p_values,out.subspace_expected.froerr./fro_A_A_k,'-bo','LineWidth',2);
     h_legend = legend('subspace');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
@@ -37,7 +37,7 @@ if(in.froerr_k)
     subplot(1,5,3);
     title('Rank-k Frobenius Norm Error','FontSize',15);
     hold on;
-    plot(p_values,out.subspace_expected.froerr_k./fro_A_A_k,'b');
+    plot(p_values,out.subspace_expected.froerr_k./fro_A_A_k,'-bo','LineWidth',2);
     h_legend = legend('subspace');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
@@ -50,7 +50,7 @@ if(in.specerr)
     subplot(1,5,4);
     title('Spectral Norm Error','FontSize',15);
     hold on;
-    plot(p_values,out.subspace_expected.specerr./spec_A_A_k,'b');
+    plot(p_values,out.subspace_expected.specerr./spec_A_A_k,'-bo','LineWidth',2);
     h_legend = legend('subspace');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
@@ -63,7 +63,7 @@ if(in.specerr_k)
     subplot(1,5,5);
     title('Rank-k Spectral Norm Error','FontSize',15);
     hold on;
-    plot(p_values,out.subspace_expected.specerr_k./spec_A_A_k,'b');
+    plot(p_values,out.subspace_expected.specerr_k./spec_A_A_k,'-bo','LineWidth',2);
     h_legend = legend('subspace');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);

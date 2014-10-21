@@ -194,6 +194,7 @@ if wantq('deterministic')
         output = deterministic(in);
         if(in.froerr)
             savedata.deterministic.froerr(i) = mean(output.froerr);
+            
         end
         if(in.froerr_k)
             savedata.deterministic.froerr_k(i) = mean(output.froerr_k);
@@ -207,6 +208,7 @@ if wantq('deterministic')
         if(in.sigma_k)
             savedata.deterministic.sigma_k(i) = mean(output.sigma_k);
         end
+        fprintf('%d,%d,%d,%d,%d\n',savedata.deterministic.froerr(i),savedata.deterministic.froerr_k(i),savedata.deterministic.specerr(i),savedata.deterministic.specerr_k(i),savedata.deterministic.sigma_k(i));
     end
 end
 
@@ -246,6 +248,7 @@ if wantq('subspace_expected')
         if(in.sigma_k)
             savedata.subspace_expected.sigma_k(i) = mean(output.sigma_k);
         end
+        fprintf('%d,%d,%d,%d,%d\n',savedata.subspace_expected.froerr(i),savedata.subspace_expected.froerr_k(i),savedata.subspace_expected.specerr(i),savedata.subspace_expected.specerr_k(i),savedata.subspace_expected.sigma_k(i));
     end
 end
 

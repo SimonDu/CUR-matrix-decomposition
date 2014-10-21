@@ -11,8 +11,8 @@ if(in.sigma_k)
     subplot(1,5,1);
     title('kth Singular Value Ratio','FontSize',15);
     hold on;
-    plot(p_values,out.deterministic.sigma_k./S(k,k),'r');
-    h_legend = legend('deterministic');
+    plot(p_values,out.deterministic.sigma_k./S(k,k),'-rx','LineWidth',2);
+    h_legend = legend('unweighted');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
     ylabel('\sigma_k(CUR)/\sigma_k(A)','FontSize',15);
@@ -24,8 +24,8 @@ if(in.froerr)
     subplot(1,5,2);
     title('Frobenius Norm Error','FontSize',15);
     hold on;
-    plot(p_values,out.deterministic.froerr./fro_A_A_k,'r');
-    h_legend = legend('deterministic');
+    plot(p_values,out.deterministic.froerr./fro_A_A_k,'-rx','LineWidth',2);
+    h_legend = legend('unweighted');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
     ylabel('||A-CUR||_F/||A-A_k||_F','FontSize',15);
@@ -37,8 +37,8 @@ if(in.froerr_k)
     subplot(1,5,3);
     title('Rank k Frobenius Norm Error','FontSize',15);
     hold on;
-    plot(p_values,out.deterministic.froerr_k./fro_A_A_k,'r');
-    h_legend = legend('deterministic');
+    plot(p_values,out.deterministic.froerr_k./fro_A_A_k,'-rx','LineWidth',2);
+    h_legend = legend('unweighted');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
     ylabel('||A-CUR_k||_F/||A-A_k||_F','FontSize',15);
@@ -50,8 +50,8 @@ if(in.specerr)
     subplot(1,5,4);
     title('Spectral Norm Error','FontSize',15)
     hold on;
-    plot(p_values,out.deterministic.specerr./spec_A_A_k,'r');
-    h_legend = legend('deterministic');
+    plot(p_values,out.deterministic.specerr./spec_A_A_k,'-rx','LineWidth',2);
+    h_legend = legend('unweighted');
     set(h_legend,'FontSize',12);
     xlabel('value of p','FontSize',15);
     ylabel('||A-CUR||_2/||A-A_k||_2','FontSize',15);
@@ -63,8 +63,8 @@ if(in.specerr_k)
     subplot(1,5,5);
     title('Rank k Spectral Norm Error','FontSize',12);
     hold on;
-    plot(p_values,out.deterministic.specerr_k./spec_A_A_k,'r');
-    h_legend = legend('deterministic');
+    plot(p_values,out.deterministic.specerr_k./spec_A_A_k,'-rx','LineWidth',2);
+    h_legend = legend('unweighted');
     set(h_legend,'FontSize',12);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR_k||_2/||A-A_k||_2','FontSize',15);
