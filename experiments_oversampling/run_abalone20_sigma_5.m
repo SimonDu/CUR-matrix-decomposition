@@ -17,7 +17,7 @@ in.specerr_k = 1;
 
 in.adaptive = 0;
 
-methods = {'deterministic'};
+methods = {'subspace_expected'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));
@@ -28,12 +28,12 @@ close all;
 
 out = run_dataset_different_p(in,methods,p_values);
 
-save('./output/p_plots_abalone20_sigma_5')
-
-p_values_plot_deterministic;
-saveas(gcf,'./plots/p_plots_abalone20_sigma_5_deterministic','fig');
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_5_deterministic.pdf');
-close all;
+% save('./output/p_plots_abalone20_sigma_5')
+% 
+% p_values_plot_deterministic;
+% saveas(gcf,'./plots/p_plots_abalone20_sigma_5_deterministic','fig');
+% export_fig(gcf,'./plots/p_plots_abalone20_sigma_5_deterministic.pdf');
+% close all;
 
 % p_values_plot_subspace_expected;
 % saveas(gcf,'./plots/p_plots_abalone20_sigma_5_subspace_expected','fig');
