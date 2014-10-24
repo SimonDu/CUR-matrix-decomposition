@@ -14,12 +14,12 @@ A_k_left_ratio = 100*norm(in.A-A_k,'fro')/norm(in.A,'fro')
 
 [Up,~,Vp] = svds(in.A,in.p);
 for i=1:m
-    L(i) = norm(U(i,:));
+    L(i) = norm(U(i,:))^2;
 end
 mu_c = m/in.p * max(L)
 
 for i=1:n
-    L(i) = norm(V(i,:));
+    L(i) = norm(V(i,:))^2;
 end
 mu_r = n/in.p * max(L)
 
