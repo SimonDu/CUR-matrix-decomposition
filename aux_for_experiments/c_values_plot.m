@@ -20,7 +20,7 @@ if(in.sigma_k)
     plot(c_values,out.near_optimal.sigma_k./S(k,k),'-ks','LineWidth',2);
     plot(c_values,out.deterministic.sigma_k./S(k,k),'-rx','LineWidth',2);
     h_legend = legend('RandLeverage','RandUniform','NearOptimal','DetUCS','Location','southeast');
-    set(h_legend,'FontSize',12);
+    set(h_legend,'FontSize',10);
     xlabel('value of c','FontSize',15);
     ylabel('\sigma_k(CUR)/\sigma_k(A)','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -40,7 +40,7 @@ if(in.froerr)
     plot(c_values,out.near_optimal.froerr./fro_A_A_k,'-ks','LineWidth',2);
     plot(c_values,out.deterministic.froerr./fro_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('RandLeverage','RandUniform','NearOptimal','DetUCS','Location','northeast');
-    set(h_legend,'FontSize',12);
+    set(h_legend,'FontSize',10);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR||_F/||A-A_k||_F','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -60,7 +60,7 @@ if(in.froerr_k)
     plot(c_values,out.near_optimal.froerr_k./fro_A_A_k,'-ks','LineWidth',2);
     plot(c_values,out.deterministic.froerr_k./fro_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('RandLeverage','RandUniform','NearOptimal','DetUCS','Location','northeast');
-    set(h_legend,'FontSize',12);
+    set(h_legend,'FontSize',10);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR_k||_F/||A-A_k||_F','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -80,7 +80,7 @@ if(in.specerr)
     plot(c_values,out.near_optimal.specerr./spec_A_A_k,'-ks','LineWidth',2);
     plot(c_values,out.deterministic.specerr./spec_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('RandLeverage','RandUniform','NearOptimal','DetUCS','Location','northeast');
-    set(h_legend,'FontSize',12);
+    set(h_legend,'FontSize',10);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR||_2/||A-A_k||_2','FontSize',15);
     xlim([c_values(1),c_values(end)]);
@@ -100,7 +100,7 @@ if(in.specerr_k)
     plot(c_values,out.near_optimal.specerr_k./spec_A_A_k,'-ks','LineWidth',2);
     plot(c_values,out.deterministic.specerr_k./spec_A_A_k,'-rx','LineWidth',2);
     h_legend = legend('RandLeverage','RandUniform','NearOptimal','DetUCS','Location','northeast');
-    set(h_legend,'FontSize',12);
+    set(h_legend,'FontSize',10);
     xlabel('value of c','FontSize',15);
     ylabel('||A-CUR_k||_2/||A-A_k||_2','FontSize',15);
     xlim([c_values(1),c_values(end)]);
