@@ -1,5 +1,5 @@
 function out = near_optimal(in)
-%
+% Near optimal column selection based algorithm for CUR decomposition
 % in is a structure with (at least) the following fields:
 % - A, a matrix
 % - k, the target rank of the approximation
@@ -7,7 +7,8 @@ function out = near_optimal(in)
 % - r, number of rows to select
 % - q, the number of times to repeat each Nystrom method for each number of
 %  column samples
-% - adaptive, 1 if we want to adaptive sampling
+% - adaptive, 1 if we want to do adaptive sampling(assume r > c), 0
+% othewise(r = c)
 % - sigma_k, 1 if we want output contain sigma_k, 0 otherwise
 % - froerr, 1 if we want output contain froerr, 0 otherwise
 % - froerr_k, 1 if we want output contain froerr_k, 0 otherwise
@@ -36,7 +37,7 @@ function out = near_optimal(in)
 
 c = in.c;
 r = in.r;
-q = 1;
+q = in.q;
 [m,n] = size(in.A);
 
 out.cidx = {};

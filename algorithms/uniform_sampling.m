@@ -1,5 +1,5 @@
 function out = uniform_sampling(in)
-%Naive uniform sampling algorithm for CUR
+%Naive uniform sampling algorithm for CUR decomposition
 % in is a structure with (at least) the following fields:
 % - A, a matrix
 % - k, the target rank of the approximation
