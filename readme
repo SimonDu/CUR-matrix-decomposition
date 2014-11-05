@@ -1,22 +1,6 @@
-A matlab library for CUR matrix decomposition
+CUR Matrix Decomposition
 
-./algorithms
-actual algorithms for CUR matrix decomposition
+The CUR matrix decomposition approximates an ar- bitrary data matrix by selecting a subset of columns and a subset of rows to form a low-rank approxima- tion [7, 13]. This method overcomes a fundamental drawback of standard PCA analysis: that the prin- cipal components and the loading vectors are dense. Dense components and dense loadings suffer from
+two main disadvantages: a loss of sparsity and re- duced interpretability. The CUR decomposition is a product of three matrices: two (C and RT with c sampled columns and r sampled rows of A respec- tively) are tall and skinny and preserve the sparsity of the data matrix, while the third (U) is a rela- tively small dense matrix. Thus the CUR approxi- mation is cheaper to work with and store. The CUR decomposition can also be easier to interpret than standard PCA because the rows and columns se- lected can highlight special influential combinations of the data variables. This mat not be possible with a dense approximation.
 
-./algorithm_aux
-auxiliary functions for algorithms
-
-./experiments_aux
-auxiliary functions for runnning experiments
-
-./io
-scripts to read different datasets
-
-./datasets
-different datasets
-
-./oversampling_experiments
-scripts to test how over sampling will affect deterniminsitc and subspace sampling algorithm
-
-./algorithms_comparision_experiments
-scripts to compare algorithms on different datasets
+This matlab package provides several algorithms for CUR matrix decomposition.
