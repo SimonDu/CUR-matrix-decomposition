@@ -1,3 +1,5 @@
+%oversampling experiments for RBF kernel of abalone dataset with sigma = 0.1,
+%target rank = 20
 in.sigma = 0.1;
 load abalone_dataset;
 X = generate_distance_matrix(abaloneInputs');
