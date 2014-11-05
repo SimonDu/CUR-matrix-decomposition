@@ -1,3 +1,4 @@
+% Reuters data with target rank = 20
 %load data
 load('Reuters21578.mat');
 in.A = fea;

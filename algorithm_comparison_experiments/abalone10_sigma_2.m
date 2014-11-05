@@ -1,3 +1,4 @@
+% RBF kernel for abalone dataset with sigma = 2 and target rank = 10
 in.sigma = 2;
 load abalone_dataset;
 X = generate_distance_matrix(abaloneInputs');

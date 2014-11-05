@@ -1,3 +1,4 @@
+%Gisette data set with target rank = 10
 load('gisette_train.data');
 in.A = gisette_train;
 

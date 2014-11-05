@@ -1,3 +1,4 @@
+% Jester data with target rank = 10
 load('jester_data_1.mat');
 in.A = jester_data_1;
 

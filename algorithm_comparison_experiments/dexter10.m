@@ -1,3 +1,4 @@
+% dexter data set with target rank = 10
 %load data
 in.A = read_dexter;
 
