@@ -3,4 +3,9 @@ CUR Matrix Decomposition
 The CUR matrix decomposition approximates an arbitrary data matrix by selecting a subset of columns and a subset of rows to form a low-rank approximation. This method overcomes a fundamental drawback of standard PCA analysis: that the principal components and the loading vectors are dense. Dense components and dense loadings suffer from
 two main disadvantages: a loss of sparsity and reduced interpretability. The CUR decomposition is a product of three matrices: two (C and R) are tall and skinny and preserve the sparsity of the data matrix, while the third (U) is a relatively small dense matrix. Thus the CUR approxi- mation is cheaper to work with and store. The CUR decomposition can also be easier to interpret than standard PCA because the rows and columns selected can highlight special influential combinations of the data variables. This mat not be possible with a dense approximation.
 
-This matlab package provides several algorithms for CUR matrix decomposition.
+This matlab package provides following algorithms for CUR matrix decomposition:
+1) Naive uniform sampling algorithm
+2) Subspace sampling algorithm
+3) Near optimal column selection based algorithm 
+4) Determinisitc unweighted column selection based algorithm
+5) Randomized unweighted column selection based algorithm
