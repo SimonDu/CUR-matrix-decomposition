@@ -1,5 +1,7 @@
+% Reuters data with target rank = 10
 %load data
-in.A = read_dexter;
+load('Reuters21578.mat');
+in.A = fea;
 
 in.k = 10;
 in.p = 10;
@@ -21,9 +23,9 @@ methods = {'deterministic','subspace_expected','uniform_sampling','near_optimal'
 out = run_different_number_of_c_and_r(in,methods,c_values,r_values);
 
 
-save('./output/compare_dexter10')
+save('./output/compare_reuters10')
 
 c_values_plot;
-saveas(gcf,'./plots/c_plots_dexter10','fig');
-export_fig(gcf,'./plots/c_plots_dexter10.pdf');
+saveas(gcf,'./plots/c_plots_reuters10','fig');
+export_fig(gcf,'./plots/c_plots_reuters10.pdf');
 close all;

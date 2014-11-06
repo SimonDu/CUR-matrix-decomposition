@@ -1,3 +1,4 @@
+% Enron email data set with target rank = 20
 load email-Enron.mat
 in.A = Problem.A;
 

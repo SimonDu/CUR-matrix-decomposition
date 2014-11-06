@@ -1,3 +1,4 @@
+%RBF kernel for wine quality data with sigma = 2, targer rank = 10
 in.sigma = 2;
 load 'winequality_data';
 X = generate_distance_matrix(X);

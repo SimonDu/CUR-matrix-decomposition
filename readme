@@ -1,22 +1,25 @@
-A matlab library for CUR matrix decomposition
+CUR Matrix Decomposition
+
+The CUR matrix decomposition approximates an arbitrary data matrix by selecting a subset of columns and a subset of rows to form a low-rank approximation. This method overcomes a fundamental drawback of standard PCA analysis: that the principal components and the loading vectors are dense. Dense components and dense loadings suffer from
+two main disadvantages: a loss of sparsity and reduced interpretability. The CUR decomposition is a product of three matrices: two (C and R) are tall and skinny and preserve the sparsity of the data matrix, while the third (U) is a relatively small dense matrix. Thus the CUR approxi- mation is cheaper to work with and store. The CUR decomposition can also be easier to interpret than standard PCA because the rows and columns selected can highlight special influential combinations of the data variables. This mat not be possible with a dense approximation.
+
+This matlab package provides following algorithms for CUR matrix decomposition:
+1) Naive uniform sampling algorithm
+2) Subspace sampling algorithm
+3) Near optimal column selection based algorithm 
+4) Determinisitc unweighted column selection based algorithm
+5) Randomized unweighted column selection based algorithm
 
 ./algorithms
-actual algorithms for CUR matrix decomposition
+This folder includes algorithms described above
 
-./algorithm_aux
-auxiliary functions for algorithms
+./algorithm_comparison_experiments
+This folder includes several secripts to compare different algorithms on various datasets
 
-./experiments_aux
-auxiliary functions for runnning experiments
+Some code and datasets are from
+http://users.cms.caltech.edu/~gittens/nystrombestiary/
+A. Gittens and M. W. Mahoney. Revisiting the Nystro ̈m method for improved large-scale ma- chine learning. arXiv preprint arXiv:1303.1849, 2013.
 
-./io
-scripts to read different datasets
-
-./datasets
-different datasets
-
-./oversampling_experiments
-scripts to test how over sampling will affect deterniminsitc and subspace sampling algorithm
-
-./algorithms_comparision_experiments
-scripts to compare algorithms on different datasets
+Code of Near optimal column selection based algorithm is from
+https://sites.google.com/site/zjuwss/
+S. Wang and Z. Zhang. Improving CUR matrix decomposition and the Nystro ̈m approximation via adaptive sampling. Journal of Machine Learning Research, 14(1):2729–2769, 2013.

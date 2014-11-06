@@ -1,3 +1,5 @@
+% linear kernel for GR data set with target rank = 10
+
 in.A = read_snap_data('CA-GrQc.txt');
 
 in.k = 10;
