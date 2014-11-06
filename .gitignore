@@ -1,22 +1,8 @@
 
-*.data
-
-experiments/09132014.mat
-
-*.m~
-
-output/GR.mat
-
-
 *.mat
 
 *.pdf
 
 
-output/medline5.mat
-
-output/medline5.mat
-
 *.fig
 
-datasets/dexter_train.labels
