@@ -9,3 +9,17 @@ This matlab package provides following algorithms for CUR matrix decomposition:
 3) Near optimal column selection based algorithm 
 4) Determinisitc unweighted column selection based algorithm
 5) Randomized unweighted column selection based algorithm
+
+./algorithms
+This folder includes algorithms described above
+
+./algorithm_comparison_experiments
+This folder includes several secripts to compare different algorithms on various datasets
+
+Some code and datasets are from
+http://users.cms.caltech.edu/~gittens/nystrombestiary/
+A. Gittens and M. W. Mahoney. Revisiting the Nystro ̈m method for improved large-scale ma- chine learning. arXiv preprint arXiv:1303.1849, 2013.
+
+Code of Near optimal column selection based algorithm is from
+https://sites.google.com/site/zjuwss/
+S. Wang and Z. Zhang. Improving CUR matrix decomposition and the Nystro ̈m approximation via adaptive sampling. Journal of Machine Learning Research, 14(1):2729–2769, 2013.
