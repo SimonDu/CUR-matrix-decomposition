@@ -6,9 +6,9 @@ end
 
 in.A = U*S*V';
 in.k = 10;
-in.p = 10;
-c = 20:100;
-r = 20:100;
+in.p = 1;
+c = 2:100;
+r = 2:100;
 
 
 in.q = 1;
@@ -38,9 +38,14 @@ for i = 1:iter
     froerr_unstable(i) = norm(A-C*U*R,'fro');
 end
 
-hold on
-semilogy(20:100,froerr,'r')
-semilogy(20:100,froerr_unstable,'b')
+
+semilogy(2:100,froerr_unstable,'-b','LineWidth',1);
+hold on;
+semilogy(2:100,froerr,'-r','LineWidth',1);
+h_legend = legend('Naive CUR','StableCUR');
+set(h_legend,'FontSize',20);
+xlabel('number of columns and rows(c=r)','FontSize',15);
+ylabel('||A-CUR||_F/||A-A_k||_F','FontSize',15);
 
 
 

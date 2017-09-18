@@ -19,7 +19,7 @@ in.specerr_k = 1;
 
 in.adaptive = 0;
 
-methods = {'subspace_expected'};
+methods = {'subspace_expected','deterministic'};
 p_values = (20:40);
 
 s = svds(in.A,p_values(end));

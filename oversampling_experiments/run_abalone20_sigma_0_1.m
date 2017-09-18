@@ -31,14 +31,14 @@ close all;
 out = run_dataset_different_p(in,methods,p_values);
 
 save('./output/p_plots_abalone20_sigma_0_1')
-
-p_values_plot_deterministic;
-saveas(gcf,'./plots/p_plots_abalone20_sigma_0_1_deterministic','fig');
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_0_1_deterministic.pdf');
-close all;
-
-p_values_plot_subspace_expected;
-saveas(gcf,'./plots/p_plots_abalone20_sigma_0_1_subspace_expected','fig');
-export_fig(gcf,'./plots/p_plots_abalone20_sigma_0_1_subspace_expected.pdf');
-close all;
+out_01 = out;
+% p_values_plot_deterministic;
+% saveas(gcf,'./plots/p_plots_abalone20_sigma_0_1_deterministic','fig');
+% export_fig(gcf,'./plots/p_plots_abalone20_sigma_0_1_deterministic.pdf');
+% close all;
+% 
+% p_values_plot_subspace_expected;
+% saveas(gcf,'./plots/p_plots_abalone20_sigma_0_1_subspace_expected','fig');
+% export_fig(gcf,'./plots/p_plots_abalone20_sigma_0_1_subspace_expected.pdf');
+% close all;
 
